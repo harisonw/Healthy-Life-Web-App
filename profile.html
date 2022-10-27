@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HLSP</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  </head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="index.html"><img src="img/Healthy_Life-Logo-White.png" alt="HL Logo"
+                  height="40"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
+                          aria-expanded="false">
+                          Profile
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                          <li><a class="dropdown-item" href="connections.html">Connections</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <!--- Only show if not signed in --->
+              <a class="btn btn-primary ms-auto" href="login.html" role="button">Login or Register</a>
+          </div>
+      </div>
+  </nav>
+
+  <div class="text-center">
+    <h1>Hi, {user name}</h1>
+    <p>Here is your profile page. You can edit your profile here.</p>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center text-primary ">
+      <div class="col-md-7 box shadow my-3 align-self-center text-center">
+        <h1 class="text-center text-black">Health Info</h1>
+        <form>
+          <div class="mb-2 form-group">
+            <label for="sexFormControl" class="form-label">Sex:</label>
+            <select class="form-control text-center" id="sexFormControl">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="ageFormLabel" class="form-label">Age:</label>
+            <input type="number" class="form-control text-center" id="ageFormLabel">
+          </div>
+          <div class="mb-2">
+            <label for="heightFormControl" class="form-label">Height (cm):</label>
+            <input type="number" class="form-control text-center" id="heightFormControl">
+          </div>
+          <div class="mb-2">
+            <label for="weightFormControl" class="form-label">Weight (Kg):</label>
+            <input type="number" class="form-control text-center" id="weightFormControl">
+          </div>
+          <div class="mb-2 form-group">
+            <label for="exerciseFormControl" class="form-label">Avg hours of exercise per week:</label>
+            <select class="form-control text-center" id="exerciseFormControl">
+              <option>None</option>
+              <option>1</option>
+              <option selected="selected">2</option>
+              <option>3-4</option>
+              <option>4+</option>
+            </select>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="stepsFormControl" class="form-label">Avg amount of steps walked per day:</label>
+            <select class="form-control text-center" id="stepsFormControl">
+              <option>0-999</option>
+              <option>1000-1999</option>
+              <option>2000-3999</option>
+              <option>4000-6999</option>
+              <option selected="selected">7000-9999</option>
+              <option>10000-12000</option>
+              <option>12+</option>
+            </select>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="mealsFormControl" class="form-label">How would you describe your eating habits:</label>
+            <select class="form-control text-center" id="stepsFormControl">
+              <option>Very Unhealthy</option>
+              <option>Unhealthy</option>
+              <option>Below Average</option>
+              <option selected="selected">Average</option>
+              <option>Above Average</option>
+              <option>Healthy</option>
+              <option>Very Healthy</option>
+            </select>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="sleepFormControl" class="form-label">Avg hours of sleep per night:</label>
+            <select class="form-control text-center" id="sleepFormControl">
+              <option>None</option>
+              <option>0-3</option>
+              <option>4-5</option>
+              <option selected="selected">6-7</option>
+              <option>8-9</option>
+              <option>9+</option>
+            </select>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="alcoholFormControl" class="form-label">Avg units of alcohol consumed per week:</label>
+            <select class="form-control text-center" id="alcoholFormControl">
+              <option>None</option>
+              <option selected="selected">1-9</option>
+              <option>10-14</option>
+              <option>15-18</option>
+              <option>18+</option>
+            </select>
+          </div>
+          <div class="mb-2 form-group">
+            <label for="occupationControl" class="form-label">Occupation:</label>
+            <select class="form-control text-center" id="occupationControl">
+              <option>None</option>
+              <option>Office Worker</option>
+              <option>Home Worker</option>
+              <option>Labourer</option>
+              <option>Other (Sedentary work)</option>
+              <option>Other (Non-sedentary work)</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Resting Heart-Rate:</label>
+            <input class="form-control text-center" type="text" placeholder="Connection Required" aria-label="Resting Heart Rate"
+              disabled>
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Save</button>
+
+        </form>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-4 box shadow my-3 align-self-center text-center">
+        <h1 class="text-center text-black">User Info</h1>
+        <form>
+          <div class="mb-3">
+            <label for="inputName" class="form-label">First Name:</label>
+            <input class="form-control text-center" id="inputName">
+          </div>
+          <div class="mb-3 text-center">
+            <label for="inputEmail" class="form-label">Email address:</label>
+            <input type="email" class="form-control text-center text-center" id="inputEmail">
+          </div>
+          <hr/ class="text-black">
+          <div class="mb-3">
+            <label for="inputCurrentPassword" class="form-label">Current Password:</label>
+            <input type="password" class="form-control text-center" id="inputCurrentPassword">
+          </div>
+          <div class="mb-3">
+            <label for="inputNewPassword1" class="form-label">New Password:</label>
+            <input type="password" class="form-control text-center" id="inputNewPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="inputNewPassword2" class="form-label">Repeat New Password:</label>
+            <input type="password" class="form-control text-center" id="inputNewPassword2">
+          </div>
+          <hr/ class="text-black">
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="" id="newsletterCheck">
+            <label class="form-check-label" for="newsletterCheck">
+              Newsletter Subscription (Uncheck to unsubscribe)
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary mb-3">Save</button>
+          <div class="col mb-2">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#twoFAModal">
+              Setup / Edit 2FA
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="twoFAModal" tabindex="-1" aria-labelledby="twoFAModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="twoFAModalLabel">2FA Settings</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Show options to setup or disable 2FA depending on if it is enabled or not.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-center text-white mt-3">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright: Healthy Life
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
