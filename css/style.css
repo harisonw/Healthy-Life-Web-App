@@ -1,5 +1,11 @@
+body {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
 footer {
-    position: static;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
