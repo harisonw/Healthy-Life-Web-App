@@ -10,10 +10,10 @@
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
-  </head>
+</head>
 
 <body>
-    <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html"><img src="img/Healthy_Life-Logo-White.png" alt="HL Logo"
@@ -41,6 +41,9 @@
               <li><a class="dropdown-item" href="#">Category 5</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="hlhacks.html">HL Hacks</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -52,8 +55,9 @@
             </ul>
           </li>
         </ul>
-        <!--- Only show if not signed in --->
+        <!--- Only show if not signed in, else if logged in show logout button --->
         <a class="btn btn-primary ms-auto" href="login.html" role="button">Login or Register</a>
+        <a class="btn btn-primary ms-auto" href="login.html" hidden="hidden" role="button">Logout</a>
       </div>
     </div>
   </nav>
@@ -155,8 +159,8 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Resting Heart-Rate:</label>
-            <input class="form-control text-center" type="text" placeholder="Connection Required" aria-label="Resting Heart Rate"
-              disabled>
+            <input class="form-control text-center" type="text" placeholder="Connection Required"
+              aria-label="Resting Heart Rate" disabled>
           </div>
           <button type="submit" class="btn btn-primary mb-2">Save</button>
 
@@ -174,7 +178,7 @@
             <label for="inputEmail" class="form-label">Email address:</label>
             <input type="email" class="form-control text-center text-center" id="inputEmail">
           </div>
-          <hr/ class="text-black">
+          <hr / class="text-black">
           <div class="mb-3">
             <label for="inputCurrentPassword" class="form-label">Current Password:</label>
             <input type="password" class="form-control text-center" id="inputCurrentPassword">
@@ -187,7 +191,7 @@
             <label for="inputNewPassword2" class="form-label">Repeat New Password:</label>
             <input type="password" class="form-control text-center" id="inputNewPassword2">
           </div>
-          <hr/ class="text-black">
+          <hr / class="text-black">
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" value="" id="newsletterCheck">
             <label class="form-check-label" for="newsletterCheck">

@@ -10,7 +10,7 @@
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
-  </head>
+</head>
 
 <body>
   <!-- Navbar -->
@@ -41,6 +41,9 @@
               <li><a class="dropdown-item" href="#">Category 5</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="hlhacks.html">HL Hacks</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -52,15 +55,16 @@
             </ul>
           </li>
         </ul>
-        <!--- Only show if not signed in --->
+        <!--- Only show if not signed in, else if logged in show logout button --->
         <a class="btn btn-primary ms-auto" href="login.html" role="button">Login or Register</a>
+        <a class="btn btn-primary ms-auto" href="login.html" hidden="hidden" role="button">Logout</a>
       </div>
     </div>
   </nav>
 
   <div class="container">
     <h3 class="mt-2" style="color:rgb(100, 100, 100)">Category 1:</h3>
-    <hr/>
+    <hr />
     <div class="row row-cols-2 row-cols-md-4 g-4">
       <div class="col">
         <div class="card">

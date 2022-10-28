@@ -14,7 +14,7 @@
   <meta name="appleid-signin-redirect-uri" content="[REDIRECT_URI]">
   <meta name="appleid-signin-state" content="[STATE]">
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
-  </head>
+</head>
 
 <body>
   <!-- Navbar -->
@@ -45,6 +45,9 @@
               <li><a class="dropdown-item" href="#">Category 5</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="hlhacks.html">HL Hacks</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -56,8 +59,9 @@
             </ul>
           </li>
         </ul>
-        <!--- Only show if not signed in --->
+        <!--- Only show if not signed in, else if logged in show logout button --->
         <a class="btn btn-primary ms-auto" href="login.html" role="button">Login or Register</a>
+        <a class="btn btn-primary ms-auto" href="login.html" hidden="hidden" role="button">Logout</a>
       </div>
     </div>
   </nav>
@@ -83,18 +87,11 @@
             <button type="submit" class="btn btn-primary">Login</button>
           </div>
           <script src="https://accounts.google.com/gsi/client" async defer></script>
-          <div id="g_id_onload"
-            data-client_id="YOUR_GOOGLE_CLIENT_ID"
-            data-login_uri="https://your.domain/your_login_endpoint"
-            data-auto_prompt="false">
+          <div id="g_id_onload" data-client_id="YOUR_GOOGLE_CLIENT_ID"
+            data-login_uri="https://your.domain/your_login_endpoint" data-auto_prompt="false">
           </div>
-          <div class="g_id_signin mt-3 mb-3"
-            data-type="standard"
-            data-size="medium"
-            data-theme="filled_blue"
-            data-text="signin_with"
-            data-shape="circle"
-            data-logo_alignment="left">
+          <div class="g_id_signin mt-3 mb-3" data-type="standard" data-size="medium" data-theme="filled_blue"
+            data-text="signin_with" data-shape="circle" data-logo_alignment="left">
           </div>
         </form>
       </div>
@@ -133,26 +130,19 @@
           <p class="form-text"><small>By signing up, you agree to the Terms of Service and Privacy Policy.</small></p>
           <!-- Sign up with google button -->
           <script src="https://accounts.google.com/gsi/client" async defer></script>
-          <div id="g_id_onload_signup"
-            data-client_id="YOUR_GOOGLE_CLIENT_ID"
-            data-login_uri="https://your.domain/your_login_endpoint"
-            data-auto_prompt="false">
+          <div id="g_id_onload_signup" data-client_id="YOUR_GOOGLE_CLIENT_ID"
+            data-login_uri="https://your.domain/your_login_endpoint" data-auto_prompt="false">
           </div>
-          <div class="g_id_signin mb-2"
-            data-type="standard"
-            data-size="medium"
-            data-theme="filled_blue"
-            data-text="signup_with"
-            data-shape="circle"
-            data-logo_alignment="left">
+          <div class="g_id_signin mb-2" data-type="standard" data-size="medium" data-theme="filled_blue"
+            data-text="signup_with" data-shape="circle" data-logo_alignment="left">
           </div>
           <!-- Apple button, may remove -->
           <div class="col text-center mb-2">
             <script type="text/javascript"
-                src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+              src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
             <div id="appleid-signin" class="btn" data-mode="center-align" data-type="sign-up" data-color="white"
-                data-border="true" data-border-radius="50" data-width="200" data-height="40"></div>
-        </div>
+              data-border="true" data-border-radius="50" data-width="200" data-height="40"></div>
+          </div>
         </form>
       </div>
     </div>
