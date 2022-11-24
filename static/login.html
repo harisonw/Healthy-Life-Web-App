@@ -187,6 +187,39 @@
       }
 
     }
+
+    const loginForm = document.getElementById('login-form');
+    loginForm.addEventListener('submit', loginUser);
+
+    async function loginUser(event) {
+      event.preventDefault();
+      const email = document.getElementById('inputEmail1').value;
+      const password = document.getElementById('inputPassword1').value;
+      const twoFA = document.getElementById('input2FA').value;
+      const data = {
+        email,
+        password,
+        twoFA
+      };
+      console.log(data);
+      const result = await fetch('api/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+
+      console.log(result);
+    
+      if(result.status === "ok") {
+        //
+      }
+      else {
+        alert(result.error);
+      }
+
+    }
   </script>
 
 

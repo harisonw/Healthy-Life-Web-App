@@ -47,51 +47,62 @@ const register = (req, res) => {
             status: "error",
             error: "Email already exists!",
           });
-        }
-        else {
+        } else {
           console.log("Error: not duplicate key");
           res.json({
             status: "error",
             message: "An error occurred!",
             error: error,
           });
-        } 
+        }
       });
   });
 };
 
-const login = (req, res, next) => {
+const login = (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
 
-  User.findOne({ email: email }).then((user) => {
-    if (user) {
-      bcrypt.compare(password, user.password, function (err, result) {
-        if (err) {
-          res.json({
-            error: err,
-          });
-        }
-        if (result) {
-          let token = jwt.sign({ name: user }, "healthyLifeKey", {
-            expiresIn: "1h",
-          });
-          res.json({
-            message: "Login successful!",
-            token,
-          });
-        } else {
-          res.json({
-            message: "Password does not match!",
-          });
-        }
-      });
-    } else {
-      res.json({
-        message: "No user found!",
-      });
-    }
-  });
+  console.log(email, password);
+
+  try {
+    User.findOne({ email: email }).then((user) => {
+      if (user) {
+        bcrypt.compare(password, user.password, function (err, result) {
+          if (err) {
+            res.json({
+              error: err,
+            });
+          }
+          if (result) {
+            let token = jwt.sign({ name: user }, "healthyLifeKey", {
+              expiresIn: "1h",
+            });
+            res.json({
+              status: "ok",
+              message: "Login successful!",
+              token,
+            });
+          } else {
+            res.json({
+              status: "error",
+              error: "No User found with this email or Password for the user is incorrect!",
+            });
+          }
+        });
+      } else {
+        res.json({
+          status: "error",
+          error: "No User found with this email or Password for the user is incorrect!",
+        });
+      }
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
 };
 
 module.exports = {
