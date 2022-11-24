@@ -213,7 +213,7 @@
       console.log(result);
     
       if(result.status === "ok") {
-        //
+        localStorage.setItem('token', result.token);
       }
       else {
         alert(result.error);

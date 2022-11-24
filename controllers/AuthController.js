@@ -1,6 +1,10 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { application } = require("express");
+
+
+const JWT_SECRET = "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
 
 const register = (req, res) => {
   var email = req.body.email;
@@ -73,7 +77,7 @@ const login = (req, res) => {
             });
           }
           if (result) {
-            let token = jwt.sign({ name: user }, "healthyLifeKey", {
+            let token = jwt.sign({ id: user._id }, JWT_SECRET, {
               expiresIn: "1h",
             });
             res.json({
@@ -103,7 +107,33 @@ const login = (req, res) => {
   }
 };
 
+
+const changePassword = async (req, res) => {
+  const { token, newpassword: plainTextPassword } = req.body;
+  try {
+  jwt.verify(token, JWT_SECRET, async (err, user) => {
+    console.log("user", user);
+    const hashedPassword = await bcrypt.hash(plainTextPassword, 10);
+    await User.updateOne({ _id: user.id }, { $set: { password: hashedPassword } });
+
+    res.json({
+      status: "ok",
+      message: "Password changed successfully!",
+    });
+  });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+
+};
+
+
+
 module.exports = {
   register,
   login,
+  changePassword,
 };
