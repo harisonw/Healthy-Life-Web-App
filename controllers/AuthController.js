@@ -63,8 +63,6 @@ const login = (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
 
-  console.log(email, password);
-
   try {
     User.findOne({ email: email }).then((user) => {
       if (user) {
