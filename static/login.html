@@ -94,6 +94,31 @@
             data-text="signin_with" data-shape="circle" data-logo_alignment="left">
           </div>
         </form>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+          Forgot Password?
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="forgotPasswordModalLabel">Forgot Password?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form id="forgotPassword-form">
+                <div class="mb-3 mx-2">
+                  <label for="inputEmailReset1" class="form-label">Email address:</label>
+                  <input type="email" class="form-control" id="inputEmailReset1" aria-describedby="emailHelp">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Reset</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
 
@@ -180,7 +205,7 @@
       console.log(result);
     
       if(result.status === "ok") {
-        //
+        alert("User registered successfully");
       }
       else {
         alert(result.error);
@@ -214,12 +239,45 @@
     
       if(result.status === "ok") {
         localStorage.setItem('token', result.token);
+        window.location.href = "home.html";
       }
       else {
         alert(result.error);
       }
 
     }
+
+    const forgotPasswordForm = document.getElementById('forgotPassword-form');
+    forgotPasswordForm.addEventListener('submit', resetPasswordUser);
+
+    async function resetPasswordUser(event) {
+      event.preventDefault();
+      console.log('reset password');
+      const email = document.getElementById('inputEmailReset1').value;
+      const data = {
+        email
+      };
+      console.log(data);
+      const result = await fetch('api/user/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(res => res.json())
+
+      console.log(result);
+    
+      if(result.status === "ok") {
+        //
+      }
+      else {
+        alert(result.error);
+      }
+
+    }
+
+
   </script>
 
 

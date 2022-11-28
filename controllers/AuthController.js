@@ -107,6 +107,20 @@ const login = (req, res) => {
   }
 };
 
+const authUser = async (req, res) => {
+  const { token } = req.body;
+  if (!token) return res.json(false);
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      return res.json(true, user);
+    });
+  } catch (err) {
+    return res.json(false);
+  }
+};
+
+
 
 const changePassword = async (req, res) => {
   const { token, newpassword: plainTextPassword } = req.body;
@@ -127,13 +141,65 @@ const changePassword = async (req, res) => {
       error: error,
     });
   }
-
 };
+
+// logout doens't need method, just delete the token from the client side and keep the token expiry time short
+
+// delete account
+const deleteAccount = async (req, res) => {
+  const { token } = req.body;
+  try {
+  jwt.verify(token, JWT_SECRET, async (err, user) => {
+    console.log("user", user);
+    await User.deleteOne({ _id: user.id });
+
+    res.json({
+      status: "ok",
+      message: "Account deleted successfully!",
+    });
+  });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
+
+// forgot password
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email: email });
+    console.log("forgot password");
+    if (user) {
+      // TODO: send email to user with a link to reset password
+      res.json({
+        status: "ok",
+        message: "If user exists the password reset email will have been sent successfully!",
+      });
+    } else {
+      res.json({
+        status: "ok",
+        error: "If user exists the password reset email will have been sent successfully!",
+      });
+    }
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
+
 
 
 
 module.exports = {
   register,
   login,
+  authUser,
   changePassword,
+  deleteAccount,
+  forgotPassword,
 };
