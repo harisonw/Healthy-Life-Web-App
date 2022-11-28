@@ -80,9 +80,11 @@ const login = (req, res) => {
             let token = jwt.sign({ id: user._id }, JWT_SECRET, {
               expiresIn: "1h",
             });
+            res.cookie("token", token, { httpOnly: true, maxAge: 1000 * 60 * 60 });
             res.json({
               status: "ok",
               message: "Login successful!",
+              id: user._id,
               token,
             });
           } else {
