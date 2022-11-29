@@ -181,14 +181,15 @@
 
     async function registerUser(event) {
       event.preventDefault();
-      const name = document.getElementById('inputName').value;
+      const fname = document.getElementById('inputName').value;
       const email1 = document.getElementById('inputEmailR1').value;
       const email2 = document.getElementById('inputEmailR2').value;
       const password1 = document.getElementById('inputPasswordR1').value;
       const password2 = document.getElementById('inputPasswordR2').value;
       const newsletter = document.getElementById('newsletterCheckChecked').checked;
+      console.log(newsletter);
       const data = {
-        name,
+        fname,
         email : email1,
         password : password1,
         newsletter

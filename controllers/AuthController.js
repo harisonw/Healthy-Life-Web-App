@@ -7,8 +7,10 @@ const { application } = require("express");
 const JWT_SECRET = "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
 
 const register = (req, res) => {
+  var fname = req.body.fname;
   var email = req.body.email;
   var password = req.body.password;
+  var newsletter = req.body.newsletter;
 
   if (
     !email ||
@@ -34,6 +36,8 @@ const register = (req, res) => {
     let user = new User({
       email: email,
       password: hashedPassword,
+      fname: fname,
+      newsletter: newsletter,
     });
 
     user
@@ -68,7 +72,7 @@ const login = (req, res) => {
   var password = req.body.password;
 
   try {
-    User.findOne({ email: email }).then((user) => {
+    User.findOne({ email: email }, 'password').then((user) => {
       if (user) {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
@@ -116,6 +120,22 @@ const authUser = async (req, res) => {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
       console.log("user", user);
       return res.json(true, user);
+    });
+  } catch (err) {
+    return res.json(false);
+  }
+};
+
+const getUser = async (req, res) => {
+  console.log("getUser");
+  const { token } = req.body;
+  console.log("token", token);
+  if (!token) return res.json(false);
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      const userFound = await User.findOne({ _id: user.id });
+      return res.json(userFound);
     });
   } catch (err) {
     return res.json(false);
@@ -172,7 +192,7 @@ const deleteAccount = async (req, res) => {
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }); // TODO: only get values needed
     console.log("forgot password");
     if (user) {
       // TODO: send email to user with a link to reset password
@@ -201,6 +221,7 @@ module.exports = {
   register,
   login,
   authUser,
+  getUser,
   changePassword,
   deleteAccount,
   forgotPassword,

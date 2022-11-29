@@ -80,8 +80,8 @@
             </select>
           </div>
           <div class="mb-2">
-            <label for="ageFormLabel" class="form-label">Age:</label>
-            <input type="number" class="form-control text-center" id="ageFormLabel">
+            <label for="ageFormControl" class="form-label">Age:</label>
+            <input type="number" class="form-control text-center" id="ageFormControl">
           </div>
           <div class="mb-2">
             <label for="heightFormControl" class="form-label">Height (cm):</label>
@@ -159,7 +159,7 @@
           </div>
           <div class="mb-2">
             <label class="form-label">Resting Heart-Rate:</label>
-            <input class="form-control text-center" type="text" placeholder="Connection Required"
+            <input id= "restingHRFormControl" class="form-control text-center" type="text" placeholder="Connection Required"
               aria-label="Resting Heart Rate" disabled>
           </div>
           <button type="submit" class="btn btn-primary mb-2">Save</button>
@@ -226,6 +226,64 @@
       </div>
     </div>
   </div>
+
+  <script>
+    async function getUserData() {
+      const response = await fetch('http://localhost:3000/api/user/get-user',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: localStorage.getItem('token')
+        })
+      })
+
+      return await response.json();
+    }
+
+    user = getUserData().then((user) => {
+
+      idValues = {
+        "sexFormControl": "sex", 
+        "ageFormControl": "age",
+        "heightFormControl": "height",
+        "weightFormControl": "weight",
+        "exerciseFormControl": "avgHrsExercisePW",
+        "stepsFormControl": "avgStepsPD",
+        "eatingFormControl": "eatingHabits",
+        "sleepFormControl": "avgHrsSleepPD",
+        "alcoholFormControl": "avgUnitsAlcoholPW",
+        "occupationControl": "occupation",
+        "restingHRFormControl": "restingHR",
+        "inputName": "fname",
+        "inputEmail": "email",
+        //"newsletterCheck": "newsletter"
+      }
+      console.log(idValues);
+
+
+      // for loop
+      for (const [key, value] of Object.entries(idValues)) {
+        if(typeof(document.getElementById(key).value) == null) {
+          console.log("null document element ID");
+        }
+        else {
+          if(typeof(user[value]) == "undefined") {
+            console.log("undefined user value");
+          }
+          else {
+            document.getElementById(key).value = user[value];
+          }
+        }
+      }
+
+      document.getElementById("newsletterCheck").checked = user.newsletter;
+
+    })
+
+  </script>
 
   <!-- Footer -->
   <footer class="bg-dark text-center text-white mt-3">
