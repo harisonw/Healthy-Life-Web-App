@@ -1,22 +1,22 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-const AuthRoute = require('./routes/auth');
+const AuthRoute = require("./routes/auth");
 const port = 3000;
-var db = 'mongodb://127.0.0.1:27017/HealthyLife';
+var db = "mongodb://127.0.0.1:27017/HealthyLife";
 
 mongoose.connect(db);
 
-app.use('/api/user', AuthRoute);
-app.use('/', express.static(path.join(__dirname, 'static')));
+app.use("/api/user", AuthRoute);
+app.use("/", express.static(path.join(__dirname, "static")));
 
-const AuthPage = require('./routes/authPage');
-app.use('/', AuthPage);
+const AuthPage = require("./routes/authPage");
+app.use("/", AuthPage);
 
-app.listen(3000, () => console.log('server listening on port ' + port));
+app.listen(3000, () => console.log("server listening on port " + port));
