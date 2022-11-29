@@ -221,11 +221,11 @@
       event.preventDefault();
       const email = document.getElementById('inputEmail1').value;
       const password = document.getElementById('inputPassword1').value;
-      const twoFA = document.getElementById('input2FA').value;
+      const twoFACode = document.getElementById('input2FA').value;
       const data = {
         email,
         password,
-        twoFA
+        twoFACode
       };
       console.log(data);
       const result = await fetch('api/user/login', {

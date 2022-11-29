@@ -12,5 +12,9 @@ router.get('/auth-user', AuthController.authUser);
 router.post('/get-user', AuthController.getUser);
 router.post('/update-user', AuthController.updateUser);
 router.post('/update-user-info', AuthController.updateUserInfo);
+router.post('/setup-2fa', AuthController.setup2FA);
+router.post('/verify-2fa', AuthController.verify2FA);
+
+
 
 module.exports = router;

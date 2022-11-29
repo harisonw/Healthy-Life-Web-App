@@ -20,7 +20,12 @@ const UserSchema = new Schema({
     occupation: { type: String },
     restingHR: { type: Number },
 
+    // 2FA
+    secret: { type: Object },
+    twoFAVerified: { type: Boolean, default: false },
+
 
 }, {timestamps: true});
 
 module.exports = mongoose.model('User', UserSchema);
+

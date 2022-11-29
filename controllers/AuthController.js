@@ -2,6 +2,7 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
+const speakeasy = require("speakeasy");
 
 const JWT_SECRET =
   "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
@@ -70,9 +71,10 @@ const register = (req, res) => {
 const login = (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
+  var twoFACode = req.body.twoFACode;
 
   try {
-    User.findOne({ email: email }, "password").then((user) => {
+    User.findOne({ email: email }, "password twoFAVerified secret").then((user) => {
       if (user) {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
@@ -84,6 +86,21 @@ const login = (req, res) => {
             let token = jwt.sign({ id: user._id }, JWT_SECRET, {
               expiresIn: "1h",
             });
+            if (user.twoFAVerified) {
+              const twoFAVerifiedNow = speakeasy.totp.verify({
+                secret: user.secret.base32,
+                encoding: "base32",
+                token: twoFACode,
+              });
+              console.log("secret.base32", user.secret.base32);
+              console.log("twoFAVerifiedNow", twoFAVerifiedNow);
+              if (!twoFAVerifiedNow) {
+                return res.json({
+                  status: "error",
+                  error: "Invalid 2FA authentication code!",
+                });
+              }
+            }
             res.cookie("token", token, {
               httpOnly: true,
               maxAge: 1000 * 60 * 60,
@@ -327,6 +344,82 @@ const updateUserInfo = async (req, res) => {
   }
 };
 
+const setup2FA = async (req, res) => {
+  const { token } = req.body;
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      console
+        .log
+        //set the values to update
+        ();
+      secret = speakeasy.generateSecret();
+      // update user with secret and create if not exists
+      await User.updateOne(
+        { _id: user.id },
+        {
+          $set: {
+            secret: secret,
+          },
+        },
+        { upsert: false }
+      );
+
+      res.json({
+        status: "ok",
+        message: "2FA setup successfully!",
+        secret: secret, // todo: .base32??
+      });
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
+
+const verify2FA = async (req, res) => {
+  const { token, code } = req.body;
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      user = await User.findOne({ _id: user.id }, "secret");
+      const twoFAVerified = speakeasy.totp.verify({
+        secret: user.secret.base32,
+        encoding: "base32",
+        token: code,
+      });
+      console.log("secret.base32", user.secret.base32);
+      console.log("twoFAVerified", twoFAVerified);
+      if (twoFAVerified) {
+        await User.updateOne(
+          { _id: user.id },
+          {
+            $set: {
+              twoFAVerified: true,
+            },
+          }
+        );
+        res.json({
+          status: "ok",
+          message: "2FA verified successfully!",
+        });
+      } else {
+        res.json({
+          status: "error",
+          error: "2FA code is incorrect!",
+        });
+      }
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -337,4 +430,6 @@ module.exports = {
   forgotPassword,
   updateUser,
   updateUserInfo,
+  setup2FA,
+  verify2FA,
 };
