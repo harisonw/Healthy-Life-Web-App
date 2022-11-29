@@ -151,47 +151,72 @@
       <!-- display posts section -->
       <!-- make posts same size -->
 
-      <div class="row">
-        <div class="col-md-4 my-2">
-          <div class="card">
-            <div class="row">
-              <div class="col-md-12">
-                <h5 class="mx-2 mt-2">Post 2 Title</h5>
-                <p class="mx-2">Post 2 Description</p>
-                <img
-                  src="img/black.jpg"
-                  alt="image"
-                  class="img-fluid card-img-top"
-                />
-                <button type="button" class="btn btn-primary mt-2 mx-2">
-                  Like <small>(23)</small>
-                </button>
-                <p class="text-secondary mx-2">20 Minutes Ago</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 my-2">
-          <div class="card">
-            <div class="row">
-              <div class="col-md-12">
-                <h5 class="mx-2 mt-2">Post 2 Title</h5>
-                <p class="mx-2">Post 2 Description</p>
-                <img
-                  src="img/grey.jpg"
-                  alt="image"
-                  class="img-fluid card-img-top"
-                />
-                <button type="button" class="btn btn-primary mt-2 mx-2">
-                  Like <small>(23)</small>
-                </button>
-              </div>
-              <p class="text-secondary mx-2">20 Minutes Ago</p>
-            </div>
-          </div>
-        </div>
+      <div id="postRow" class="row">
+
       </div>
     </div>
+
+    <script>
+      function getPosts() {
+        console.log("starting");
+        // get posts from database
+        var posts = fetch("http://localhost:3000/api/posts/get-all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            // reverse loop through posts and display them
+            for (var i = data.length - 1; i >= 0; i--) {
+              var post = data[i];
+              var postRow = document.getElementById("postRow");
+              var postCol = document.createElement("div");
+              postCol.className = "col-md-4 my-2";
+              var card = document.createElement("div");
+              card.className = "card";
+              var cardBody = document.createElement("div");
+              cardBody.className = "card-body";
+              var title = document.createElement("h5");
+              title.className = "mx-2 mt-2";
+              title.innerHTML = post.title;
+              var description = document.createElement("p");
+              description.className = "mx-2";
+              description.innerHTML = post.body;
+              var image = document.createElement("img");
+              image.className = "img-fluid card-img-top";
+              image.src = post.image;
+              var likeButton = document.createElement("button");
+              likeButton.className = "btn btn-primary mt-2 mx-2";
+              likeButton.innerHTML = "Like <small>(" + post.likes.length + ")</small>";
+              var time = document.createElement("p");
+              time.className = "text-secondary mx-2";
+              // calculate time since post
+              var timeSince = new Date() - new Date(post.createdAt);
+              timeSince = Math.floor(timeSince / 1000 / 60);
+              if (timeSince < 60) {
+                time.innerHTML = timeSince + " Minutes Ago";
+              } else {
+                timeSince = Math.floor(timeSince / 60);
+                time.innerHTML = timeSince + " Hours Ago";
+              }
+              cardBody.appendChild(title);
+              cardBody.appendChild(description);
+              cardBody.appendChild(image);
+              cardBody.appendChild(likeButton);
+              cardBody.appendChild(time);
+              card.appendChild(cardBody);
+              postCol.appendChild(card);
+              postRow.appendChild(postCol);
+            }
+          });
+
+      };
+
+      getPosts();
+    </script>
 
     <!-- Footer -->
     <footer class="bg-dark text-center text-white mt-3">

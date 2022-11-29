@@ -19,4 +19,9 @@ app.use("/", express.static(path.join(__dirname, "static")));
 const AuthPage = require("./routes/authPage");
 app.use("/", AuthPage);
 
+
+
+const PostRoute = require("./routes/posts");
+app.use("/api/posts", PostRoute);
+
 app.listen(3000, () => console.log("server listening on port " + port));
