@@ -142,11 +142,12 @@ const authUser = async (req, res) => {
   if (!token) return res.json(false);
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json([false, "Invalid token"]);
       console.log("user", user);
       return res.json(true, user);
     });
   } catch (err) {
-    return res.json(false);
+    return res.json({ status: "error", error: err });
   }
 };
 
@@ -157,12 +158,17 @@ const getUser = async (req, res) => {
   if (!token) return res.json(false);
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json({status: "error", error: "Invalid token"});
       console.log("user", user);
-      const userFound = await User.findOne({ _id: user.id }, "-password");
-      return res.json(userFound);
+      try {
+        const userFound = await User.findOne({ _id: user.id }, "-password");
+        return res.json(userFound);
+      } catch (err) {
+        return res.json({ status: "error", error: err });
+      }
     });
   } catch (err) {
-    return res.json(false);
+    return res.json({ status: "error", error: err });
   }
 };
 
@@ -171,6 +177,7 @@ const changePassword = async (req, res) => {
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
       console.log("user", user);
+      if (!user) return res.json({ status: "error", error: "Invalid token" });
       const oldHashedPassword = await User.findOne(
         { _id: user.id },
         "-_id password"
@@ -220,6 +227,7 @@ const deleteAccount = async (req, res) => {
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
       console.log("user", user);
+      if (!user) return res.json({ status: "error", error: "Invalid token" });
       await User.deleteOne({ _id: user.id });
 
       res.json({
@@ -267,6 +275,7 @@ const updateUser = async (req, res) => {
   const { token, fname, email, newsletter } = req.body;
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console.log(user);
       console.log(user._id);
@@ -311,6 +320,7 @@ const updateUserInfo = async (req, res) => {
   } = req.body;
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console.log(user);
       console.log(user._id);
@@ -350,6 +360,7 @@ const setup2FA = async (req, res) => {
   const { token } = req.body;
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console
         .log
@@ -385,6 +396,7 @@ const verify2FA = async (req, res) => {
   const { token, code } = req.body;
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
+      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       user = await User.findOne({ _id: user.id }, "secret");
       const twoFAVerified = speakeasy.totp.verify({
