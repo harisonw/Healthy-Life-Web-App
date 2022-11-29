@@ -74,59 +74,61 @@ const login = (req, res) => {
   var twoFACode = req.body.twoFACode;
 
   try {
-    User.findOne({ email: email }, "password twoFAVerified secret").then((user) => {
-      if (user) {
-        bcrypt.compare(password, user.password, function (err, result) {
-          if (err) {
-            res.json({
-              error: err,
-            });
-          }
-          if (result) {
-            let token = jwt.sign({ id: user._id }, JWT_SECRET, {
-              expiresIn: "1h",
-            });
-            if (user.twoFAVerified) {
-              const twoFAVerifiedNow = speakeasy.totp.verify({
-                secret: user.secret.base32,
-                encoding: "base32",
-                token: twoFACode,
+    User.findOne({ email: email }, "password twoFAVerified secret").then(
+      (user) => {
+        if (user) {
+          bcrypt.compare(password, user.password, function (err, result) {
+            if (err) {
+              res.json({
+                error: err,
               });
-              console.log("secret.base32", user.secret.base32);
-              console.log("twoFAVerifiedNow", twoFAVerifiedNow);
-              if (!twoFAVerifiedNow) {
-                return res.json({
-                  status: "error",
-                  error: "Invalid 2FA authentication code!",
-                });
-              }
             }
-            res.cookie("token", token, {
-              httpOnly: true,
-              maxAge: 1000 * 60 * 60,
-            });
-            res.json({
-              status: "ok",
-              message: "Login successful!",
-              id: user._id,
-              token,
-            });
-          } else {
-            res.json({
-              status: "error",
-              error:
-                "No User found with this email or Password for the user is incorrect!",
-            });
-          }
-        });
-      } else {
-        res.json({
-          status: "error",
-          error:
-            "No User found with this email or Password for the user is incorrect!",
-        });
+            if (result) {
+              let token = jwt.sign({ id: user._id }, JWT_SECRET, {
+                expiresIn: "1h",
+              });
+              if (user.twoFAVerified) {
+                const twoFAVerifiedNow = speakeasy.totp.verify({
+                  secret: user.secret.base32,
+                  encoding: "base32",
+                  token: twoFACode,
+                });
+                console.log("secret.base32", user.secret.base32);
+                console.log("twoFAVerifiedNow", twoFAVerifiedNow);
+                if (!twoFAVerifiedNow) {
+                  return res.json({
+                    status: "error",
+                    error: "Invalid 2FA authentication code!",
+                  });
+                }
+              }
+              res.cookie("token", token, {
+                httpOnly: true,
+                maxAge: 1000 * 60 * 60,
+              });
+              res.json({
+                status: "ok",
+                message: "Login successful!",
+                id: user._id,
+                token,
+              });
+            } else {
+              res.json({
+                status: "error",
+                error:
+                  "No User found with this email or Password for the user is incorrect!",
+              });
+            }
+          });
+        } else {
+          res.json({
+            status: "error",
+            error:
+              "No User found with this email or Password for the user is incorrect!",
+          });
+        }
       }
-    });
+    );
   } catch (error) {
     res.json({
       status: "error",
