@@ -1,300 +1,593 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HL Profile</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HL Profile</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png">
-</head>
-
-<body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/Healthy_Life-Logo-White.png" alt="HL Logo"
-          height="40"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="home.html">Home</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Categories
-            </a>
-            <!-- Category Dropdown, Would be good to populate from database of all Categories-->
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="catagory.html">Category 1</a></li>
-              <li><a class="dropdown-item" href="#">Category 2</a></li>
-              <li><a class="dropdown-item" href="#">Category 3</a></li>
-              <li><a class="dropdown-item" href="#">Category 4</a></li>
-              <li><a class="dropdown-item" href="#">Category 5</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="hlhacks.html">HL Hacks</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="profile.html" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              Profile
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item active" href="profile.html">Profile</a></li>
-              <li><a class="dropdown-item" href="connections.html">Connections</a></li>
-            </ul>
-          </li>
-        </ul>
-        <!--- Only show if not signed in, else if logged in show logout button --->
-        <a class="btn btn-primary ms-auto" href="login.html" role="button">Login or Register</a>
-        <a class="btn btn-primary ms-auto" href="login.html" hidden="hidden" role="button">Logout</a>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"
+          ><img src="img/Healthy_Life-Logo-White.png" alt="HL Logo" height="40"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="home.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="profile.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <!-- Category Dropdown, Would be good to populate from database of all Categories-->
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="catagory.html">Category 1</a>
+                </li>
+                <li><a class="dropdown-item" href="#">Category 2</a></li>
+                <li><a class="dropdown-item" href="#">Category 3</a></li>
+                <li><a class="dropdown-item" href="#">Category 4</a></li>
+                <li><a class="dropdown-item" href="#">Category 5</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="hlhacks.html"
+                >HL Hacks</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="profile.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Profile
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item active" href="profile.html"
+                    >Profile</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="connections.html"
+                    >Connections</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--- Only show if not signed in, else if logged in show logout button --->
+          <a class="btn btn-primary ms-auto" href="login.html" role="button"
+            >Login or Register</a
+          >
+          <a
+            class="btn btn-primary ms-auto"
+            href="login.html"
+            hidden="hidden"
+            role="button"
+            >Logout</a
+          >
+        </div>
       </div>
+    </nav>
+
+    <div class="text-center">
+      <h1>Hi, <span id="userNameGreeting">{user name}</span>!</h1>
+      <p>Here is your profile page. You can edit your profile here.</p>
     </div>
-  </nav>
 
-  <div class="text-center">
-    <h1>Hi, {user name}</h1>
-    <p>Here is your profile page. You can edit your profile here.</p>
-  </div>
-
-  <div class="container">
-    <div class="row justify-content-center text-primary ">
-      <div class="col-md-7 box shadow my-3 align-self-center text-center">
-        <h1 class="text-center text-black">Health Info</h1>
-        <form>
-          <div class="mb-2 form-group">
-            <label for="sexFormControl" class="form-label">Sex:</label>
-            <select class="form-control text-center" id="sexFormControl">
-              <option>Male</option>
-              <option>Female</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label for="ageFormControl" class="form-label">Age:</label>
-            <input type="number" class="form-control text-center" id="ageFormControl">
-          </div>
-          <div class="mb-2">
-            <label for="heightFormControl" class="form-label">Height (cm):</label>
-            <input type="number" class="form-control text-center" id="heightFormControl">
-          </div>
-          <div class="mb-2">
-            <label for="weightFormControl" class="form-label">Weight (Kg):</label>
-            <input type="number" class="form-control text-center" id="weightFormControl">
-          </div>
-          <div class="mb-2 form-group">
-            <label for="exerciseFormControl" class="form-label">Avg hours of exercise per week:</label>
-            <select class="form-control text-center" id="exerciseFormControl">
-              <option>None</option>
-              <option>1</option>
-              <option selected="selected">2</option>
-              <option>3-4</option>
-              <option>4+</option>
-            </select>
-          </div>
-          <div class="mb-2 form-group">
-            <label for="stepsFormControl" class="form-label">Avg amount of steps walked per day:</label>
-            <select class="form-control text-center" id="stepsFormControl">
-              <option>0-999</option>
-              <option>1000-1999</option>
-              <option>2000-3999</option>
-              <option>4000-6999</option>
-              <option selected="selected">7000-9999</option>
-              <option>10000-12000</option>
-              <option>12+</option>
-            </select>
-          </div>
-          <div class="mb-2 form-group">
-            <label for="eatingFormControl" class="form-label">How would you describe your eating habits:</label>
-            <select class="form-control text-center" id="eatingFormControl">
-              <option>Very Unhealthy</option>
-              <option>Unhealthy</option>
-              <option>Below Average</option>
-              <option selected="selected">Average</option>
-              <option>Above Average</option>
-              <option>Healthy</option>
-              <option>Very Healthy</option>
-            </select>
-          </div>
-          <div class="mb-2 form-group">
-            <label for="sleepFormControl" class="form-label">Avg hours of sleep per night:</label>
-            <select class="form-control text-center" id="sleepFormControl">
-              <option>None</option>
-              <option>0-3</option>
-              <option>4-5</option>
-              <option selected="selected">6-7</option>
-              <option>8-9</option>
-              <option>9+</option>
-            </select>
-          </div>
-          <div class="mb-2 form-group">
-            <label for="alcoholFormControl" class="form-label">Avg units of alcohol consumed per week:</label>
-            <select class="form-control text-center" id="alcoholFormControl">
-              <option>None</option>
-              <option selected="selected">1-9</option>
-              <option>10-14</option>
-              <option>15-18</option>
-              <option>18+</option>
-            </select>
-          </div>
-          <div class="mb-2 form-group">
-            <label for="occupationControl" class="form-label">Occupation:</label>
-            <select class="form-control text-center" id="occupationControl">
-              <option>None</option>
-              <option>Office Worker</option>
-              <option>Home Worker</option>
-              <option>Labourer</option>
-              <option>Other (Sedentary work)</option>
-              <option>Other (Non-sedentary work)</option>
-            </select>
-          </div>
-          <div class="mb-2">
-            <label class="form-label">Resting Heart-Rate:</label>
-            <input id= "restingHRFormControl" class="form-control text-center" type="text" placeholder="Connection Required"
-              aria-label="Resting Heart Rate" disabled>
-          </div>
-          <button type="submit" class="btn btn-primary mb-2">Save</button>
-
-        </form>
-      </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-4 box shadow my-3 align-self-center text-center">
-        <h1 class="text-center text-black">User Info</h1>
-        <form>
-          <div class="mb-3">
-            <label for="inputName" class="form-label">First Name:</label>
-            <input class="form-control text-center" id="inputName">
-          </div>
-          <div class="mb-3 text-center">
-            <label for="inputEmail" class="form-label">Email address:</label>
-            <input type="email" class="form-control text-center text-center" id="inputEmail">
-          </div>
-          <hr class="text-black">
-          <div class="mb-3">
-            <label for="inputCurrentPassword" class="form-label">Current Password:</label>
-            <input type="password" class="form-control text-center" id="inputCurrentPassword">
-          </div>
-          <div class="mb-3">
-            <label for="inputNewPassword1" class="form-label">New Password:</label>
-            <input type="password" class="form-control text-center" id="inputNewPassword1">
-          </div>
-          <div class="mb-3">
-            <label for="inputNewPassword2" class="form-label">Repeat New Password:</label>
-            <input type="password" class="form-control text-center" id="inputNewPassword2">
-          </div>
-          <hr class="text-black">
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="" id="newsletterCheck">
-            <label class="form-check-label" for="newsletterCheck">
-              Newsletter Subscription (Uncheck to unsubscribe)
-            </label>
-          </div>
-          <button type="submit" class="btn btn-primary mb-3">Save</button>
-          <div class="col mb-2">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#twoFAModal">
-              Setup / Edit 2FA
+    <div class="container">
+      <div class="row justify-content-center text-primary">
+        <div class="col-md-7 box shadow my-3 align-self-center text-center">
+          <h1 class="text-center text-black">Health Info</h1>
+          <form>
+            <div class="mb-2 form-group">
+              <label for="sexFormControl" class="form-label">Sex:</label>
+              <select class="form-control text-center" id="sexFormControl">
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label for="ageFormControl" class="form-label">Age:</label>
+              <input
+                type="number"
+                class="form-control text-center"
+                id="ageFormControl"
+              />
+            </div>
+            <div class="mb-2">
+              <label for="heightFormControl" class="form-label"
+                >Height (cm):</label
+              >
+              <input
+                type="number"
+                class="form-control text-center"
+                id="heightFormControl"
+              />
+            </div>
+            <div class="mb-2">
+              <label for="weightFormControl" class="form-label"
+                >Weight (Kg):</label
+              >
+              <input
+                type="number"
+                class="form-control text-center"
+                id="weightFormControl"
+              />
+            </div>
+            <div class="mb-2 form-group">
+              <label for="exerciseFormControl" class="form-label"
+                >Avg hours of exercise per week:</label
+              >
+              <select class="form-control text-center" id="exerciseFormControl">
+                <option>None</option>
+                <option>1</option>
+                <option selected="selected">2</option>
+                <option>3-4</option>
+                <option>4+</option>
+              </select>
+            </div>
+            <div class="mb-2 form-group">
+              <label for="stepsFormControl" class="form-label"
+                >Avg amount of steps walked per day:</label
+              >
+              <select class="form-control text-center" id="stepsFormControl">
+                <option>0-999</option>
+                <option>1000-1999</option>
+                <option>2000-3999</option>
+                <option>4000-6999</option>
+                <option selected="selected">7000-9999</option>
+                <option>10000-12000</option>
+                <option>12+</option>
+              </select>
+            </div>
+            <div class="mb-2 form-group">
+              <label for="eatingFormControl" class="form-label"
+                >How would you describe your eating habits:</label
+              >
+              <select class="form-control text-center" id="eatingFormControl">
+                <option>Very Unhealthy</option>
+                <option>Unhealthy</option>
+                <option>Below Average</option>
+                <option selected="selected">Average</option>
+                <option>Above Average</option>
+                <option>Healthy</option>
+                <option>Very Healthy</option>
+              </select>
+            </div>
+            <div class="mb-2 form-group">
+              <label for="sleepFormControl" class="form-label"
+                >Avg hours of sleep per night:</label
+              >
+              <select class="form-control text-center" id="sleepFormControl">
+                <option>None</option>
+                <option>0-3</option>
+                <option>4-5</option>
+                <option selected="selected">6-7</option>
+                <option>8-9</option>
+                <option>9+</option>
+              </select>
+            </div>
+            <div class="mb-2 form-group">
+              <label for="alcoholFormControl" class="form-label"
+                >Avg units of alcohol consumed per week:</label
+              >
+              <select class="form-control text-center" id="alcoholFormControl">
+                <option>None</option>
+                <option selected="selected">1-9</option>
+                <option>10-14</option>
+                <option>15-18</option>
+                <option>18+</option>
+              </select>
+            </div>
+            <div class="mb-2 form-group">
+              <label for="occupationControl" class="form-label"
+                >Occupation:</label
+              >
+              <select class="form-control text-center" id="occupationControl">
+                <option>None</option>
+                <option>Office Worker</option>
+                <option>Home Worker</option>
+                <option>Labourer</option>
+                <option>Other (Sedentary work)</option>
+                <option>Other (Non-sedentary work)</option>
+              </select>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Resting Heart-Rate:</label>
+              <input
+                id="restingHRFormControl"
+                class="form-control text-center"
+                type="text"
+                placeholder="Connection Required"
+                aria-label="Resting Heart Rate"
+                disabled
+              />
+            </div>
+            <button
+              id="heathInfoSaveButton"
+              type="submit"
+              class="btn btn-primary mb-2"
+            >
+              Save
             </button>
-            <!-- Modal -->
-            <div class="modal fade" id="twoFAModal" tabindex="-1" aria-labelledby="twoFAModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="twoFAModalLabel">2FA Settings</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    Show options to setup or disable 2FA depending on if it is enabled or not.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <p id="heathInfoSavedMessage" style="display: none"><small>Saved</small></p>
+          </form>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4 box shadow my-3 align-self-center text-center">
+          <h1 class="text-center text-black">User Info</h1>
+          <form>
+            <div class="mb-3">
+              <label for="inputName" class="form-label">First Name:</label>
+              <input class="form-control text-center" id="inputName" />
+            </div>
+            <div class="mb-3 text-center">
+              <label for="inputEmail" class="form-label">Email address:</label>
+              <input
+                type="email"
+                class="form-control text-center text-center"
+                id="inputEmail"
+              />
+            </div>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="newsletterCheck"
+              />
+              <label class="form-check-label" for="newsletterCheck">
+                Newsletter Subscription (Uncheck to unsubscribe)
+              </label>
+            </div>
+            <button
+              id="userSaveButton"
+              type="submit"
+              class="btn btn-primary mb-1"
+            >
+              Save
+            </button>
+            <p id="userSavedMessage" style="display: none"><small>Saved</small></p>
+          </form>
+          <form>
+            <hr class="text-black" />
+            <div class="mb-3">
+              <label for="inputCurrentPassword" class="form-label"
+                >Current Password:</label
+              >
+              <input
+                type="password"
+                class="form-control text-center"
+                id="inputCurrentPassword"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputNewPassword1" class="form-label"
+                >New Password:</label
+              >
+              <input
+                type="password"
+                class="form-control text-center"
+                id="inputNewPassword1"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputNewPassword2" class="form-label"
+                >Repeat New Password:</label
+              >
+              <input
+                type="password"
+                class="form-control text-center"
+                id="inputNewPassword2"
+              />
+            </div>
+            <button
+              id="updatePasswordButton"
+              type="submit"
+              class="btn btn-primary mb-3"
+            >
+              Update Password
+            </button>
+            <p id="updatePasswordMessage" style="display: none"><small>Password Updated!</small></p>
+            <div class="col mb-2">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#twoFAModal"
+              >
+                Setup / Edit 2FA
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="twoFAModal"
+                tabindex="-1"
+                aria-labelledby="twoFAModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="twoFAModalLabel">
+                        2FA Settings
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      Show options to setup or disable 2FA depending on if it is
+                      enabled or not.
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    async function getUserData() {
-      const response = await fetch('http://localhost:3000/api/user/get-user',
-      {
-        method: 'POST',
+    <script>
+      async function getUserData() {
+        const response = await fetch(
+          "http://localhost:3000/api/user/get-user",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token: localStorage.getItem("token"),
+            }),
+          }
+        );
+
+        return await response.json();
+      }
+
+      user = getUserData().then((user) => {
+        document.getElementById("userNameGreeting").innerHTML = user.fname;
+
+        idValues = {
+          sexFormControl: "sex",
+          ageFormControl: "age",
+          heightFormControl: "height",
+          weightFormControl: "weight",
+          exerciseFormControl: "avgHrsExercisePW",
+          stepsFormControl: "avgStepsPD",
+          eatingFormControl: "eatingHabits",
+          sleepFormControl: "avgHrsSleepPD",
+          alcoholFormControl: "avgUnitsAlcoholPW",
+          occupationControl: "occupation",
+          //"restingHRFormControl": "restingHR",
+          inputName: "fname",
+          inputEmail: "email",
+          //"newsletterCheck": "newsletter"
+        };
+        console.log(idValues);
+
+        // for loop
+        for (const [key, value] of Object.entries(idValues)) {
+          if (typeof document.getElementById(key).value == null) {
+            console.log("null document element ID");
+          } else {
+            if (typeof user[value] == "undefined") {
+              console.log(key, "undefined user value");
+            } else {
+              document.getElementById(key).value = user[value];
+            }
+          }
+        }
+
+        document.getElementById("newsletterCheck").checked = user.newsletter;
+      });
+
+      //when save user info button pressed print
+      document
+        .getElementById("userSaveButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          console.log("User Save Button Pressed");
+          //get values from form
+          var fname = document.getElementById("inputName").value;
+          var email = document.getElementById("inputEmail").value;
+          var newsletter = document.getElementById("newsletterCheck").checked;
+          //send to server
+          fetch("http://localhost:3000/api/user/update-user", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token: localStorage.getItem("token"),
+              fname: fname,
+              email: email,
+              newsletter: newsletter,
+            }),
+          });
+          document.getElementById("userSavedMessage").style.display = "block";
+          //wait 3 seconds then hide message
+          setTimeout(function(){ document.getElementById("userSavedMessage").style.display = "none"; }, 3000);
+        });
+
+      //when update password button pressed print
+      document
+        .getElementById("updatePasswordButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          console.log("Update Password Button Pressed");
+          //get values from form
+          var oldPassword = document.getElementById(
+            "inputCurrentPassword"
+          ).value;
+          var newPassword1 = document.getElementById("inputNewPassword1").value;
+          var newPassword2 = document.getElementById("inputNewPassword2").value;
+          // check if new passwords match
+          if (newPassword1 != newPassword2) {
+            alert("New passwords do not match");
+          } else if (newPassword1.length < 8) {
+            alert("New password must be at least 8 characters!");
+          } else {
+            fetch("http://localhost:3000/api/user/change-password", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                token: localStorage.getItem("token"),
+                oldPassword: oldPassword,
+                newPassword: newPassword1,
+              }),
+            });
+            document.getElementById("updatePasswordMessage").style.display = "block"
+            //wait 3 seconds then hide message
+            setTimeout(function(){ document.getElementById("updatePasswordMessage").style.display = "none"; }, 3000);
+            var oldPassword = document.getElementById(
+            "inputCurrentPassword"
+            ).value = "";
+            var newPassword1 = document.getElementById("inputNewPassword1").value = "";
+            var newPassword2 = document.getElementById("inputNewPassword2").value = "";
+          }
+        });
+
+    //when save health info button pressed print
+    document.getElementById("heathInfoSaveButton").addEventListener("click", function (event) {
+      event.preventDefault();
+      console.log("Health Info Save Button Pressed");
+      //get values from form
+      var sex = document.getElementById("sexFormControl").value;
+      var age = document.getElementById("ageFormControl").value;
+      var height = document.getElementById("heightFormControl").value;
+      var weight = document.getElementById("weightFormControl").value;
+      var avgHrsExercisePW = document.getElementById("exerciseFormControl").value;
+      var avgStepsPD = document.getElementById("stepsFormControl").value;
+      var eatingHabits = document.getElementById("eatingFormControl").value;
+      var avgHrsSleepPD = document.getElementById("sleepFormControl").value;
+      var avgUnitsAlcoholPW = document.getElementById("alcoholFormControl").value;
+      var occupation = document.getElementById("occupationControl").value;
+      //var restingHR = document.getElementById("restingHRFormControl").value;
+
+      //check if values are valid
+      // check if age is integer
+      if (Number.isInteger(parseInt(age)) == false) {
+        alert("Age must be an integer");
+        return;
+      } else if (age < 0) {
+        alert("Age must be greater than 0");
+        return;
+      } else if (age > 120) {
+        alert("Age must be less than 120");
+        return;
+      } else if (Number.isInteger(parseInt(height)) == false) {
+        alert("Height must be an integer");
+        return;
+      } else if (height < 10) {
+        alert("Height must be greater than 10 cm");
+        return;
+      } else if (height > 300) {
+        alert("Height must be less than 300 cm");
+        return;
+      } else if (Number.isInteger(parseInt(weight)) == false) {
+        alert("Weight must be an integer");
+        return;
+      } else if (weight < 1) {
+        alert("Weight must be greater than 1 kg");
+        return;
+      } else if (weight > 500) {
+        alert("Weight must be less than 500 kg");
+        return;
+      }
+
+      //send to server
+      fetch("http://localhost:3000/api/user/update-health-info", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          token: localStorage.getItem('token')
-        })
-      })
-
-      return await response.json();
-    }
-
-    user = getUserData().then((user) => {
-
-      idValues = {
-        "sexFormControl": "sex", 
-        "ageFormControl": "age",
-        "heightFormControl": "height",
-        "weightFormControl": "weight",
-        "exerciseFormControl": "avgHrsExercisePW",
-        "stepsFormControl": "avgStepsPD",
-        "eatingFormControl": "eatingHabits",
-        "sleepFormControl": "avgHrsSleepPD",
-        "alcoholFormControl": "avgUnitsAlcoholPW",
-        "occupationControl": "occupation",
-        "restingHRFormControl": "restingHR",
-        "inputName": "fname",
-        "inputEmail": "email",
-        //"newsletterCheck": "newsletter"
-      }
-      console.log(idValues);
+          token: localStorage.getItem("token"),
+          sex: sex,
+          age: age,
+          height: height,
+          weight: weight,
+          avgHrsExercisePW: avgHrsExercisePW,
+          avgStepsPD: avgStepsPD,
+          eatingHabits: eatingHabits,
+          avgHrsSleepPD: avgHrsSleepPD,
+          avgUnitsAlcoholPW: avgUnitsAlcoholPW,
+          occupation: occupation,
+          //restingHR: restingHR
+        }),
+      });
+      document.getElementById("heathInfoSavedMessage").style.display = "block"
+      //wait 3 seconds then hide message
+      setTimeout(function(){ document.getElementById("heathInfoSavedMessage").style.display = "none"; }, 3000);
+    });
 
 
-      // for loop
-      for (const [key, value] of Object.entries(idValues)) {
-        if(typeof(document.getElementById(key).value) == null) {
-          console.log("null document element ID");
-        }
-        else {
-          if(typeof(user[value]) == "undefined") {
-            console.log("undefined user value");
-          }
-          else {
-            document.getElementById(key).value = user[value];
-          }
-        }
-      }
 
-      document.getElementById("newsletterCheck").checked = user.newsletter;
+    </script>
 
-    })
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white mt-3">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2022 Copyright: Healthy Life
+      </div>
+    </footer>
 
-  </script>
-
-  <!-- Footer -->
-  <footer class="bg-dark text-center text-white mt-3">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright: Healthy Life
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

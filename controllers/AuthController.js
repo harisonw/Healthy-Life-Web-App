@@ -3,8 +3,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { application } = require("express");
 
-
-const JWT_SECRET = "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
+const JWT_SECRET =
+  "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
 
 const register = (req, res) => {
   var fname = req.body.fname;
@@ -72,7 +72,7 @@ const login = (req, res) => {
   var password = req.body.password;
 
   try {
-    User.findOne({ email: email }, 'password').then((user) => {
+    User.findOne({ email: email }, "password").then((user) => {
       if (user) {
         bcrypt.compare(password, user.password, function (err, result) {
           if (err) {
@@ -84,7 +84,10 @@ const login = (req, res) => {
             let token = jwt.sign({ id: user._id }, JWT_SECRET, {
               expiresIn: "1h",
             });
-            res.cookie("token", token, { httpOnly: true, maxAge: 1000 * 60 * 60 });
+            res.cookie("token", token, {
+              httpOnly: true,
+              maxAge: 1000 * 60 * 60,
+            });
             res.json({
               status: "ok",
               message: "Login successful!",
@@ -94,14 +97,16 @@ const login = (req, res) => {
           } else {
             res.json({
               status: "error",
-              error: "No User found with this email or Password for the user is incorrect!",
+              error:
+                "No User found with this email or Password for the user is incorrect!",
             });
           }
         });
       } else {
         res.json({
           status: "error",
-          error: "No User found with this email or Password for the user is incorrect!",
+          error:
+            "No User found with this email or Password for the user is incorrect!",
         });
       }
     });
@@ -134,7 +139,7 @@ const getUser = async (req, res) => {
   try {
     jwt.verify(token, JWT_SECRET, async (err, user) => {
       console.log("user", user);
-      const userFound = await User.findOne({ _id: user.id });
+      const userFound = await User.findOne({ _id: user.id }, "-password");
       return res.json(userFound);
     });
   } catch (err) {
@@ -142,25 +147,48 @@ const getUser = async (req, res) => {
   }
 };
 
-
-
 const changePassword = async (req, res) => {
-  const { token, newpassword: plainTextPassword } = req.body;
+  const { token, oldPassword, newPassword } = req.body;
   try {
-  jwt.verify(token, JWT_SECRET, async (err, user) => {
-    console.log("user", user);
-    const hashedPassword = await bcrypt.hash(plainTextPassword, 10);
-    await User.updateOne({ _id: user.id }, { $set: { password: hashedPassword } });
-
-    res.json({
-      status: "ok",
-      message: "Password changed successfully!",
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      const oldHashedPassword = await User.findOne(
+        { _id: user.id },
+        "-_id password"
+      );
+      console.log("oldHashedPassword", oldHashedPassword.password);
+      bcrypt.compare(
+        oldPassword,
+        oldHashedPassword.password,
+        async function (err, result) {
+          if (err) {
+            res.json({
+              error: err,
+            });
+          }
+          if (result) {
+            const hashedPassword = await bcrypt.hash(newPassword, 10);
+            await User.updateOne(
+              { _id: user.id },
+              { $set: { password: hashedPassword } }
+            );
+            res.json({
+              status: "ok",
+              message: "Password changed successfully!",
+            });
+          } else {
+            res.json({
+              status: "error",
+              error: "Old password is incorrect!",
+            });
+          }
+        }
+      );
     });
-  });
-  } catch (error) {
-    res.json({
+  } catch (err) {
+    return res.json({
       status: "error",
-      error: error,
+      error: err,
     });
   }
 };
@@ -171,15 +199,15 @@ const changePassword = async (req, res) => {
 const deleteAccount = async (req, res) => {
   const { token } = req.body;
   try {
-  jwt.verify(token, JWT_SECRET, async (err, user) => {
-    console.log("user", user);
-    await User.deleteOne({ _id: user.id });
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      await User.deleteOne({ _id: user.id });
 
-    res.json({
-      status: "ok",
-      message: "Account deleted successfully!",
+      res.json({
+        status: "ok",
+        message: "Account deleted successfully!",
+      });
     });
-  });
   } catch (error) {
     res.json({
       status: "error",
@@ -198,12 +226,14 @@ const forgotPassword = async (req, res) => {
       // TODO: send email to user with a link to reset password
       res.json({
         status: "ok",
-        message: "If user exists the password reset email will have been sent successfully!",
+        message:
+          "If user exists the password reset email will have been sent successfully!",
       });
     } else {
       res.json({
         status: "ok",
-        error: "If user exists the password reset email will have been sent successfully!",
+        error:
+          "If user exists the password reset email will have been sent successfully!",
       });
     }
   } catch (error) {
@@ -214,8 +244,88 @@ const forgotPassword = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { token, fname, email, newsletter } = req.body;
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      console.log(user);
+      console.log(user._id);
+      await User.updateOne(
+        { _id: user.id },
+        //set the values to update
+        {
+          $set: {
+            fname: fname,
+            email: email,
+            newsletter: newsletter,
+          },
+        }
+      );
 
+      res.json({
+        status: "ok",
+        message: "Account updated successfully!",
+      });
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
 
+const updateUserInfo = async (req, res) => {
+  const {
+    token,
+    sex,
+    age,
+    height,
+    weight,
+    avgHrsExercisePW,
+    avgStepsPD,
+    eatingHabits,
+    avgHrsSleepPD,
+    avgUnitsAlcoholPW,
+    occupation,
+  } = req.body;
+  try {
+    jwt.verify(token, JWT_SECRET, async (err, user) => {
+      console.log("user", user);
+      console.log(user);
+      console.log(user._id);
+      await User.updateOne(
+        { _id: user.id },
+        //set the values to update
+        {
+          $set: {
+            sex: sex,
+            age: age,
+            height: height,
+            weight: weight,
+            avgHrsExercisePW: avgHrsExercisePW,
+            avgStepsPD: avgStepsPD,
+            eatingHabits: eatingHabits,
+            avgHrsSleepPD: avgHrsSleepPD,
+            avgUnitsAlcoholPW: avgUnitsAlcoholPW,
+            occupation: occupation,
+          },
+        }
+      );
+
+      res.json({
+        status: "ok",
+        message: "Account Info updated successfully!",
+      });
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
 
 module.exports = {
   register,
@@ -225,4 +335,6 @@ module.exports = {
   changePassword,
   deleteAccount,
   forgotPassword,
+  updateUser,
+  updateUserInfo,
 };
