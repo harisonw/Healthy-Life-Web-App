@@ -98,7 +98,7 @@
           <a
             id="logoutButton"
             class="btn btn-primary ms-auto"
-            href="login.html"
+            href="/api/user/logout"
             hidden="hidden"
             role="button"
             >Logout</a
@@ -210,7 +210,7 @@
               likeButton.id = post._id // use for like function
               likeButton.className = "likeButton btn btn-primary mt-2";
               // if user has liked post, show unlike button
-              console.log("id", user._id)
+              //console.log("id", user._id)
               console.log("likes: " + post.likes);
               if (post.likes.includes(user._id)) {
                 likeButton.innerHTML = "Unlike <small>(" + post.likes.length + ")</small>";

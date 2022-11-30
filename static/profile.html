@@ -89,7 +89,11 @@
             </li>
           </ul>
           <!--- Only show if not signed in, else if logged in show logout button --->
-          <a class="btn btn-primary ms-auto" href="login.html" hidden="hidden" role="button"
+          <a
+            class="btn btn-primary ms-auto"
+            href="login.html"
+            hidden="hidden"
+            role="button"
             >Login or Register</a
           >
           <a
@@ -243,7 +247,9 @@
             >
               Save
             </button>
-            <p id="heathInfoSavedMessage" style="display: none"><small>Saved</small></p>
+            <p id="heathInfoSavedMessage" style="display: none">
+              <small>Saved</small>
+            </p>
           </form>
         </div>
         <div class="col-md-1"></div>
@@ -280,7 +286,9 @@
             >
               Save
             </button>
-            <p id="userSavedMessage" style="display: none"><small>Saved</small></p>
+            <p id="userSavedMessage" style="display: none">
+              <small>Saved</small>
+            </p>
           </form>
           <form>
             <hr class="text-black" />
@@ -321,7 +329,9 @@
             >
               Update Password
             </button>
-            <p id="updatePasswordMessage" style="display: none"><small>Password Updated!</small></p>
+            <p id="updatePasswordMessage" style="display: none">
+              <small>Password Updated!</small>
+            </p>
             <div class="col mb-2">
               <!-- Button trigger modal -->
               <button
@@ -361,6 +371,61 @@
                       <button
                         type="button"
                         class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="text-black" />
+            <div class="col mb-2">
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="btn mt-2 btn-secondary"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteAccountModal"
+              >
+                Delete Account!
+              </button>
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="deleteAccountModal"
+                tabindex="-1"
+                aria-labelledby="deleteAccountModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="deleteAccountModalLabel">
+                        Delete Account - Warning this cant be undone!
+                      </h1>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <button
+                        id="deleteAccountButton"
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        DELETE!
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -455,7 +520,9 @@
           });
           document.getElementById("userSavedMessage").style.display = "block";
           //wait 3 seconds then hide message
-          setTimeout(function(){ document.getElementById("userSavedMessage").style.display = "none"; }, 3000);
+          setTimeout(function () {
+            document.getElementById("userSavedMessage").style.display = "none";
+          }, 3000);
         });
 
       //when update password button pressed print
@@ -487,93 +554,132 @@
                 newPassword: newPassword1,
               }),
             });
-            document.getElementById("updatePasswordMessage").style.display = "block"
+            document.getElementById("updatePasswordMessage").style.display =
+              "block";
             //wait 3 seconds then hide message
-            setTimeout(function(){ document.getElementById("updatePasswordMessage").style.display = "none"; }, 3000);
-            var oldPassword = document.getElementById(
-            "inputCurrentPassword"
-            ).value = "";
-            var newPassword1 = document.getElementById("inputNewPassword1").value = "";
-            var newPassword2 = document.getElementById("inputNewPassword2").value = "";
+            setTimeout(function () {
+              document.getElementById("updatePasswordMessage").style.display =
+                "none";
+            }, 3000);
+            var oldPassword = (document.getElementById(
+              "inputCurrentPassword"
+            ).value = "");
+            var newPassword1 = (document.getElementById(
+              "inputNewPassword1"
+            ).value = "");
+            var newPassword2 = (document.getElementById(
+              "inputNewPassword2"
+            ).value = "");
           }
         });
 
-    //when save health info button pressed print
-    document.getElementById("heathInfoSaveButton").addEventListener("click", function (event) {
-      event.preventDefault();
-      console.log("Health Info Save Button Pressed");
-      //get values from form
-      var sex = document.getElementById("sexFormControl").value;
-      var age = document.getElementById("ageFormControl").value;
-      var height = document.getElementById("heightFormControl").value;
-      var weight = document.getElementById("weightFormControl").value;
-      var avgHrsExercisePW = document.getElementById("exerciseFormControl").value;
-      var avgStepsPD = document.getElementById("stepsFormControl").value;
-      var eatingHabits = document.getElementById("eatingFormControl").value;
-      var avgHrsSleepPD = document.getElementById("sleepFormControl").value;
-      var avgUnitsAlcoholPW = document.getElementById("alcoholFormControl").value;
-      var occupation = document.getElementById("occupationControl").value;
-      //var restingHR = document.getElementById("restingHRFormControl").value;
+      //when save health info button pressed print
+      document
+        .getElementById("heathInfoSaveButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          console.log("Health Info Save Button Pressed");
+          //get values from form
+          var sex = document.getElementById("sexFormControl").value;
+          var age = document.getElementById("ageFormControl").value;
+          var height = document.getElementById("heightFormControl").value;
+          var weight = document.getElementById("weightFormControl").value;
+          var avgHrsExercisePW = document.getElementById(
+            "exerciseFormControl"
+          ).value;
+          var avgStepsPD = document.getElementById("stepsFormControl").value;
+          var eatingHabits = document.getElementById("eatingFormControl").value;
+          var avgHrsSleepPD = document.getElementById("sleepFormControl").value;
+          var avgUnitsAlcoholPW =
+            document.getElementById("alcoholFormControl").value;
+          var occupation = document.getElementById("occupationControl").value;
+          //var restingHR = document.getElementById("restingHRFormControl").value;
 
-      //check if values are valid
-      // check if age is integer
-      if (Number.isInteger(parseInt(age)) == false) {
-        alert("Age must be an integer");
-        return;
-      } else if (age < 0) {
-        alert("Age must be greater than 0");
-        return;
-      } else if (age > 120) {
-        alert("Age must be less than 120");
-        return;
-      } else if (Number.isInteger(parseInt(height)) == false) {
-        alert("Height must be an integer");
-        return;
-      } else if (height < 10) {
-        alert("Height must be greater than 10 cm");
-        return;
-      } else if (height > 300) {
-        alert("Height must be less than 300 cm");
-        return;
-      } else if (Number.isInteger(parseInt(weight)) == false) {
-        alert("Weight must be an integer");
-        return;
-      } else if (weight < 1) {
-        alert("Weight must be greater than 1 kg");
-        return;
-      } else if (weight > 500) {
-        alert("Weight must be less than 500 kg");
-        return;
-      }
+          //check if values are valid
+          // check if age is integer
+          if (Number.isInteger(parseInt(age)) == false) {
+            alert("Age must be an integer");
+            return;
+          } else if (age < 0) {
+            alert("Age must be greater than 0");
+            return;
+          } else if (age > 120) {
+            alert("Age must be less than 120");
+            return;
+          } else if (Number.isInteger(parseInt(height)) == false) {
+            alert("Height must be an integer");
+            return;
+          } else if (height < 10) {
+            alert("Height must be greater than 10 cm");
+            return;
+          } else if (height > 300) {
+            alert("Height must be less than 300 cm");
+            return;
+          } else if (Number.isInteger(parseInt(weight)) == false) {
+            alert("Weight must be an integer");
+            return;
+          } else if (weight < 1) {
+            alert("Weight must be greater than 1 kg");
+            return;
+          } else if (weight > 500) {
+            alert("Weight must be less than 500 kg");
+            return;
+          }
 
-      //send to server
-      fetch("http://localhost:3000/api/user/update-user-info", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          token: localStorage.getItem("token"),
-          sex: sex,
-          age: age,
-          height: height,
-          weight: weight,
-          avgHrsExercisePW: avgHrsExercisePW,
-          avgStepsPD: avgStepsPD,
-          eatingHabits: eatingHabits,
-          avgHrsSleepPD: avgHrsSleepPD,
-          avgUnitsAlcoholPW: avgUnitsAlcoholPW,
-          occupation: occupation,
-          //restingHR: restingHR
-        }),
-      });
-      document.getElementById("heathInfoSavedMessage").style.display = "block"
-      //wait 3 seconds then hide message
-      setTimeout(function(){ document.getElementById("heathInfoSavedMessage").style.display = "none"; }, 3000);
-    });
+          //send to server
+          fetch("http://localhost:3000/api/user/update-user-info", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token: localStorage.getItem("token"),
+              sex: sex,
+              age: age,
+              height: height,
+              weight: weight,
+              avgHrsExercisePW: avgHrsExercisePW,
+              avgStepsPD: avgStepsPD,
+              eatingHabits: eatingHabits,
+              avgHrsSleepPD: avgHrsSleepPD,
+              avgUnitsAlcoholPW: avgUnitsAlcoholPW,
+              occupation: occupation,
+              //restingHR: restingHR
+            }),
+          });
+          document.getElementById("heathInfoSavedMessage").style.display =
+            "block";
+          //wait 3 seconds then hide message
+          setTimeout(function () {
+            document.getElementById("heathInfoSavedMessage").style.display =
+              "none";
+          }, 3000);
+        });
 
 
-
+      //when delete account button pressed send to server
+      document
+        .getElementById("deleteAccountButton")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          console.log("Delete Account Button Pressed");
+          //send to server
+          fetch("http://localhost:3000/api/user/delete-account", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+          // logout user
+          fetch("http://localhost:3000/api/user/logout", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          });
+          alert("Account Deleted!");
+          window.location.href="../"
+        });
     </script>
 
     <!-- Footer -->
