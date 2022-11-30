@@ -110,7 +110,6 @@ const login = (req, res) => {
                 status: "ok",
                 message: "Login successful!",
                 id: user._id,
-                token,
               });
             } else {
               res.json({
@@ -137,28 +136,11 @@ const login = (req, res) => {
   }
 };
 
-const authUser = async (req, res) => {
-  const { token } = req.body;
-  if (!token) return res.json(false);
-  try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json([false, "Invalid token"]);
-      console.log("user", user);
-      return res.json(true, user);
-    });
-  } catch (err) {
-    return res.json({ status: "error", error: err });
-  }
-};
 
 const getUser = async (req, res) => {
   console.log("getUser");
-  const { token } = req.body;
-  console.log("token", token);
-  if (!token) return res.json(false);
+  user = req.user;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json({status: "error", error: "Invalid token"});
       console.log("user", user);
       try {
         const userFound = await User.findOne({ _id: user.id }, "-password");
@@ -166,18 +148,16 @@ const getUser = async (req, res) => {
       } catch (err) {
         return res.json({ status: "error", error: err });
       }
-    });
   } catch (err) {
     return res.json({ status: "error", error: err });
   }
 };
 
 const changePassword = async (req, res) => {
-  const { token, oldPassword, newPassword } = req.body;
+  user = req.user;
+  console.log("changePassword", req.user);
+  const { oldPassword, newPassword } = req.body;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      console.log("user", user);
-      if (!user) return res.json({ status: "error", error: "Invalid token" });
       const oldHashedPassword = await User.findOne(
         { _id: user.id },
         "-_id password"
@@ -210,7 +190,6 @@ const changePassword = async (req, res) => {
           }
         }
       );
-    });
   } catch (err) {
     return res.json({
       status: "error",
@@ -219,13 +198,16 @@ const changePassword = async (req, res) => {
   }
 };
 
-// logout doens't need method, just delete the token from the client side and keep the token expiry time short
+// logout 
+const logout = (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+};
 
 // delete account
 const deleteAccount = async (req, res) => {
-  const { token } = req.body;
+  user = req.user;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
       console.log("user", user);
       if (!user) return res.json({ status: "error", error: "Invalid token" });
       await User.deleteOne({ _id: user.id });
@@ -234,7 +216,6 @@ const deleteAccount = async (req, res) => {
         status: "ok",
         message: "Account deleted successfully!",
       });
-    });
   } catch (error) {
     res.json({
       status: "error",
@@ -272,30 +253,31 @@ const forgotPassword = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { token, fname, email, newsletter } = req.body;
+  user = req.user;
+  const { fname, email, newsletter } = req.body;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console.log(user);
       console.log(user._id);
-      await User.updateOne(
-        { _id: user.id },
-        //set the values to update
-        {
-          $set: {
-            fname: fname,
-            email: email,
-            newsletter: newsletter,
-          },
-        }
-      );
-
+      try {
+        await User.updateOne(
+          { _id: user.id },
+          //set the values to update
+          {
+            $set: {
+              fname: fname,
+              email: email,
+              newsletter: newsletter,
+            },
+          }
+        );
+      } catch (err) {
+        return res.json({ status: "error", error: err });
+      }
       res.json({
         status: "ok",
         message: "Account updated successfully!",
       });
-    });
   } catch (error) {
     res.json({
       status: "error",
@@ -306,7 +288,6 @@ const updateUser = async (req, res) => {
 
 const updateUserInfo = async (req, res) => {
   const {
-    token,
     sex,
     age,
     height,
@@ -319,8 +300,6 @@ const updateUserInfo = async (req, res) => {
     occupation,
   } = req.body;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console.log(user);
       console.log(user._id);
@@ -347,7 +326,6 @@ const updateUserInfo = async (req, res) => {
         status: "ok",
         message: "Account Info updated successfully!",
       });
-    });
   } catch (error) {
     res.json({
       status: "error",
@@ -357,10 +335,8 @@ const updateUserInfo = async (req, res) => {
 };
 
 const setup2FA = async (req, res) => {
-  const { token } = req.body;
+  user = req.user;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       console
         .log
@@ -383,7 +359,6 @@ const setup2FA = async (req, res) => {
         message: "2FA setup successfully!",
         secret: secret, // todo: .base32??
       });
-    });
   } catch (error) {
     res.json({
       status: "error",
@@ -393,10 +368,9 @@ const setup2FA = async (req, res) => {
 };
 
 const verify2FA = async (req, res) => {
-  const { token, code } = req.body;
+  user = req.user;
+  const { code } = req.body;
   try {
-    jwt.verify(token, JWT_SECRET, async (err, user) => {
-      if(!user) return res.json({ status: "error", error: "Invalid token" });
       console.log("user", user);
       user = await User.findOne({ _id: user.id }, "secret");
       const twoFAVerified = speakeasy.totp.verify({
@@ -425,7 +399,7 @@ const verify2FA = async (req, res) => {
           error: "2FA code is incorrect!",
         });
       }
-    });
+
   } catch (error) {
     res.json({
       status: "error",
@@ -434,6 +408,18 @@ const verify2FA = async (req, res) => {
   }
 };
 
+const auth = (req, res) => {
+    try {
+      console.log("api/user/auth called");
+      const token = req.cookies.token;
+      const verified = jwt.verify(token, JWT_SECRET);
+      console.log("verified: ", verified);
+      res.json({message: "User is authorized"});
+    } catch (err) {
+      res.status(401).json({ error: "Not authorized" });
+    }
+  };
+
 
 
 
@@ -441,7 +427,7 @@ const verify2FA = async (req, res) => {
 module.exports = {
   register,
   login,
-  authUser,
+  logout,
   getUser,
   changePassword,
   deleteAccount,
@@ -450,4 +436,5 @@ module.exports = {
   updateUserInfo,
   setup2FA,
   verify2FA,
+  auth,
 };
