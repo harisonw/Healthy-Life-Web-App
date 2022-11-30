@@ -136,18 +136,17 @@ const login = (req, res) => {
   }
 };
 
-
 const getUser = async (req, res) => {
   console.log("getUser");
   user = req.user;
   try {
-      console.log("user", user);
-      try {
-        const userFound = await User.findOne({ _id: user.id }, "-password");
-        return res.json(userFound);
-      } catch (err) {
-        return res.json({ status: "error", error: err });
-      }
+    console.log("user", user);
+    try {
+      const userFound = await User.findOne({ _id: user.id }, "-password");
+      return res.json(userFound);
+    } catch (err) {
+      return res.json({ status: "error", error: err });
+    }
   } catch (err) {
     return res.json({ status: "error", error: err });
   }
@@ -158,38 +157,38 @@ const changePassword = async (req, res) => {
   console.log("changePassword", req.user);
   const { oldPassword, newPassword } = req.body;
   try {
-      const oldHashedPassword = await User.findOne(
-        { _id: user.id },
-        "-_id password"
-      );
-      console.log("oldHashedPassword", oldHashedPassword.password);
-      bcrypt.compare(
-        oldPassword,
-        oldHashedPassword.password,
-        async function (err, result) {
-          if (err) {
-            res.json({
-              error: err,
-            });
-          }
-          if (result) {
-            const hashedPassword = await bcrypt.hash(newPassword, 10);
-            await User.updateOne(
-              { _id: user.id },
-              { $set: { password: hashedPassword } }
-            );
-            res.json({
-              status: "ok",
-              message: "Password changed successfully!",
-            });
-          } else {
-            res.json({
-              status: "error",
-              error: "Old password is incorrect!",
-            });
-          }
+    const oldHashedPassword = await User.findOne(
+      { _id: user.id },
+      "-_id password"
+    );
+    console.log("oldHashedPassword", oldHashedPassword.password);
+    bcrypt.compare(
+      oldPassword,
+      oldHashedPassword.password,
+      async function (err, result) {
+        if (err) {
+          res.json({
+            error: err,
+          });
         }
-      );
+        if (result) {
+          const hashedPassword = await bcrypt.hash(newPassword, 10);
+          await User.updateOne(
+            { _id: user.id },
+            { $set: { password: hashedPassword } }
+          );
+          res.json({
+            status: "ok",
+            message: "Password changed successfully!",
+          });
+        } else {
+          res.json({
+            status: "error",
+            error: "Old password is incorrect!",
+          });
+        }
+      }
+    );
   } catch (err) {
     return res.json({
       status: "error",
@@ -198,7 +197,7 @@ const changePassword = async (req, res) => {
   }
 };
 
-// logout 
+// logout
 const logout = (req, res) => {
   res.clearCookie("token");
   res.redirect("/");
@@ -208,14 +207,14 @@ const logout = (req, res) => {
 const deleteAccount = async (req, res) => {
   user = req.user;
   try {
-      console.log("user", user);
-      if (!user) return res.json({ status: "error", error: "Invalid token" });
-      await User.deleteOne({ _id: user.id });
+    console.log("user", user);
+    if (!user) return res.json({ status: "error", error: "Invalid token" });
+    await User.deleteOne({ _id: user.id });
 
-      res.json({
-        status: "ok",
-        message: "Account deleted successfully!",
-      });
+    res.json({
+      status: "ok",
+      message: "Account deleted successfully!",
+    });
   } catch (error) {
     res.json({
       status: "error",
@@ -256,28 +255,28 @@ const updateUser = async (req, res) => {
   user = req.user;
   const { fname, email, newsletter } = req.body;
   try {
-      console.log("user", user);
-      console.log(user);
-      console.log(user._id);
-      try {
-        await User.updateOne(
-          { _id: user.id },
-          //set the values to update
-          {
-            $set: {
-              fname: fname,
-              email: email,
-              newsletter: newsletter,
-            },
-          }
-        );
-      } catch (err) {
-        return res.json({ status: "error", error: err });
-      }
-      res.json({
-        status: "ok",
-        message: "Account updated successfully!",
-      });
+    console.log("user", user);
+    console.log(user);
+    console.log(user._id);
+    try {
+      await User.updateOne(
+        { _id: user.id },
+        //set the values to update
+        {
+          $set: {
+            fname: fname,
+            email: email,
+            newsletter: newsletter,
+          },
+        }
+      );
+    } catch (err) {
+      return res.json({ status: "error", error: err });
+    }
+    res.json({
+      status: "ok",
+      message: "Account updated successfully!",
+    });
   } catch (error) {
     res.json({
       status: "error",
@@ -300,32 +299,32 @@ const updateUserInfo = async (req, res) => {
     occupation,
   } = req.body;
   try {
-      console.log("user", user);
-      console.log(user);
-      console.log(user._id);
-      await User.updateOne(
-        { _id: user.id },
-        //set the values to update
-        {
-          $set: {
-            sex: sex,
-            age: age,
-            height: height,
-            weight: weight,
-            avgHrsExercisePW: avgHrsExercisePW,
-            avgStepsPD: avgStepsPD,
-            eatingHabits: eatingHabits,
-            avgHrsSleepPD: avgHrsSleepPD,
-            avgUnitsAlcoholPW: avgUnitsAlcoholPW,
-            occupation: occupation,
-          },
-        }
-      );
+    console.log("user", user);
+    console.log(user);
+    console.log(user._id);
+    await User.updateOne(
+      { _id: user.id },
+      //set the values to update
+      {
+        $set: {
+          sex: sex,
+          age: age,
+          height: height,
+          weight: weight,
+          avgHrsExercisePW: avgHrsExercisePW,
+          avgStepsPD: avgStepsPD,
+          eatingHabits: eatingHabits,
+          avgHrsSleepPD: avgHrsSleepPD,
+          avgUnitsAlcoholPW: avgUnitsAlcoholPW,
+          occupation: occupation,
+        },
+      }
+    );
 
-      res.json({
-        status: "ok",
-        message: "Account Info updated successfully!",
-      });
+    res.json({
+      status: "ok",
+      message: "Account Info updated successfully!",
+    });
   } catch (error) {
     res.json({
       status: "error",
@@ -337,28 +336,28 @@ const updateUserInfo = async (req, res) => {
 const setup2FA = async (req, res) => {
   user = req.user;
   try {
-      console.log("user", user);
-      console
-        .log
-        //set the values to update
-        ();
-      secret = speakeasy.generateSecret();
-      // update user with secret and create if not exists
-      await User.updateOne(
-        { _id: user.id },
-        {
-          $set: {
-            secret: secret,
-          },
+    console.log("user", user);
+    console
+      .log
+      //set the values to update
+      ();
+    secret = speakeasy.generateSecret();
+    // update user with secret and create if not exists
+    await User.updateOne(
+      { _id: user.id },
+      {
+        $set: {
+          secret: secret,
         },
-        { upsert: false }
-      );
+      },
+      { upsert: false }
+    );
 
-      res.json({
-        status: "ok",
-        message: "2FA setup successfully!",
-        secret: secret, // todo: .base32??
-      });
+    res.json({
+      status: "ok",
+      message: "2FA setup successfully!",
+      secret: secret, // todo: .base32??
+    });
   } catch (error) {
     res.json({
       status: "error",
@@ -371,35 +370,34 @@ const verify2FA = async (req, res) => {
   user = req.user;
   const { code } = req.body;
   try {
-      console.log("user", user);
-      user = await User.findOne({ _id: user.id }, "secret");
-      const twoFAVerified = speakeasy.totp.verify({
-        secret: user.secret.base32,
-        encoding: "base32",
-        token: code,
+    console.log("user", user);
+    user = await User.findOne({ _id: user.id }, "secret");
+    const twoFAVerified = speakeasy.totp.verify({
+      secret: user.secret.base32,
+      encoding: "base32",
+      token: code,
+    });
+    console.log("secret.base32", user.secret.base32);
+    console.log("twoFAVerified", twoFAVerified);
+    if (twoFAVerified) {
+      await User.updateOne(
+        { _id: user.id },
+        {
+          $set: {
+            twoFAVerified: true,
+          },
+        }
+      );
+      res.json({
+        status: "ok",
+        message: "2FA verified successfully!",
       });
-      console.log("secret.base32", user.secret.base32);
-      console.log("twoFAVerified", twoFAVerified);
-      if (twoFAVerified) {
-        await User.updateOne(
-          { _id: user.id },
-          {
-            $set: {
-              twoFAVerified: true,
-            },
-          }
-        );
-        res.json({
-          status: "ok",
-          message: "2FA verified successfully!",
-        });
-      } else {
-        res.json({
-          status: "error",
-          error: "2FA code is incorrect!",
-        });
-      }
-
+    } else {
+      res.json({
+        status: "error",
+        error: "2FA code is incorrect!",
+      });
+    }
   } catch (error) {
     res.json({
       status: "error",
@@ -409,20 +407,16 @@ const verify2FA = async (req, res) => {
 };
 
 const auth = (req, res) => {
-    try {
-      console.log("api/user/auth called");
-      const token = req.cookies.token;
-      const verified = jwt.verify(token, JWT_SECRET);
-      console.log("verified: ", verified);
-      res.json({message: "User is authorized"});
-    } catch (err) {
-      res.status(401).json({ error: "Not authorized" });
-    }
-  };
-
-
-
-
+  try {
+    console.log("api/user/auth called");
+    const token = req.cookies.token;
+    const verified = jwt.verify(token, JWT_SECRET);
+    console.log("verified: ", verified);
+    res.json({ message: "User is authorized" });
+  } catch (err) {
+    res.status(401).json({ error: "Not authorized" });
+  }
+};
 
 module.exports = {
   register,

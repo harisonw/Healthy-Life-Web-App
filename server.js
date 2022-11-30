@@ -19,8 +19,6 @@ app.use("/", express.static(path.join(__dirname, "static")));
 const AuthPage = require("./routes/authPage");
 app.use("/", AuthPage);
 
-
-
 const PostRoute = require("./routes/posts");
 app.use("/api/posts", PostRoute);
 

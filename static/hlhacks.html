@@ -92,7 +92,11 @@
             </li>
           </ul>
           <!--- Only show if not signed in, else if logged in show logout button --->
-          <a id="loginButton" class="btn btn-primary ms-auto" href="login.html" role="button"
+          <a
+            id="loginButton"
+            class="btn btn-primary ms-auto"
+            href="login.html"
+            role="button"
             >Login or Register</a
           >
           <a
@@ -138,7 +142,11 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button id="submitPostButton"type="button" class="btn btn-primary">
+                    <button
+                      id="submitPostButton"
+                      type="button"
+                      class="btn btn-primary"
+                    >
                       Submit
                     </button>
                   </div>
@@ -152,13 +160,10 @@
       <!-- display posts section -->
       <!-- make posts same size -->
 
-      <div id="postRow" class="row">
-
-      </div>
+      <div id="postRow" class="row"></div>
     </div>
 
     <script>
-
       // get user for like/unlike view
       var user = fetch("http://localhost:3000/api/user/get-user", {
         method: "POST",
@@ -166,14 +171,13 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          placeholder: 'placeholder',
+          placeholder: "placeholder",
         }),
       })
         .then((response) => response.json())
         .then((data) => {
           user = data;
         });
-
 
       function getPosts() {
         console.log("starting");
@@ -191,35 +195,37 @@
               var post = data[i];
               var postRow = document.getElementById("postRow");
               var postCol = document.createElement("div");
-              postCol.className = "col-md-4 my-2";
+              postCol.className = "col-md-4 my-2 d-flex align-items-stretch";
               var card = document.createElement("div");
               card.className = "card";
               card.id = post._id; // use for like function
               var cardBody = document.createElement("div");
-              cardBody.className = "card-body";
+              cardBody.className = "card-body d-flex flex-column";
               var title = document.createElement("h5");
               title.className = "mt-1";
               title.innerHTML = post.title;
               var description = document.createElement("p");
-              description.className = "mx-2";
+              description.className = "mx-auto";
               description.innerHTML = post.body;
               var image = document.createElement("img");
-              image.className = "img-fluid card-img-top";
+              image.className = "img-fluid card-img-top mb-2";
               image.src = post.image;
               var likeButton = document.createElement("button");
-              likeButton.id = post._id // use for like function
-              likeButton.className = "likeButton btn btn-primary mt-2";
+              likeButton.id = post._id; // use for like function
+              likeButton.className = "likeButton mt-auto btn btn-primary mt-2 ";
               // if user has liked post, show unlike button
               //console.log("id", user._id)
               console.log("likes: " + post.likes);
               if (post.likes.includes(user._id)) {
-                likeButton.innerHTML = "Unlike <small>(" + post.likes.length + ")</small>";
+                likeButton.innerHTML =
+                  "Unlike <small>(" + post.likes.length + ")</small>";
               } else {
-                likeButton.innerHTML = "Like <small>(" + post.likes.length + ")</small>";
+                likeButton.innerHTML =
+                  "Like <small>(" + post.likes.length + ")</small>";
               }
-              
+
               var time = document.createElement("p");
-              time.className = "text-secondary mb-0";
+              time.className = "text-secondary mb-0 mx-auto";
               // calculate time since post
               var timeSince = new Date() - new Date(post.createdAt);
               timeSince = Math.floor(timeSince / 1000 / 60);
@@ -229,10 +235,10 @@
                 timeSince = Math.floor(timeSince / 60);
                 time.innerHTML = timeSince + " Hours Ago";
               }
-              
+
               // add user who posted
               var userPosted = document.createElement("p");
-              userPosted.className = "text-secondary mb-0";
+              userPosted.className = "text-secondary mb-0 mx-auto";
               userPosted.innerHTML = "Posted by: " + post.user.fname;
 
               cardBody.appendChild(title);
@@ -257,8 +263,7 @@
               });
             }
           });
-
-      };
+      }
 
       getPosts();
 
@@ -278,8 +283,7 @@
           .then((data) => {
             console.log(data);
           });
-      };
-
+      }
 
       // wait for dom to load
       document.addEventListener("DOMContentLoaded", function () {
@@ -316,10 +320,6 @@
               });
           });
       });
-
-
-
-
     </script>
 
     <!-- Footer -->

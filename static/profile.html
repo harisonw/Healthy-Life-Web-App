@@ -656,7 +656,6 @@
           }, 3000);
         });
 
-
       //when delete account button pressed send to server
       document
         .getElementById("deleteAccountButton")
@@ -668,17 +667,17 @@
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-            }
+            },
           });
           // logout user
           fetch("http://localhost:3000/api/user/logout", {
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
-            }
+            },
           });
           alert("Account Deleted!");
-          window.location.href="../"
+          window.location.href = "../";
         });
     </script>
 

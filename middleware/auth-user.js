@@ -12,7 +12,6 @@ const auth = (req, res, next) => {
     req.user = verified;
     next();
   } catch (err) {
-    console.log(err);
     //res.status(401).json({ error: "Not authorized" });
     return res.redirect("/login.html?error=NotAuthorized");
     //return res.status(301).location('/login.html?error=NotAuthorized').end();

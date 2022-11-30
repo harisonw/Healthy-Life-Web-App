@@ -2,15 +2,12 @@
 function checkLogin() {
   console.log("checkLogin");
   try {
-    fetch("/api/user/auth", 
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    .then((response) => {
+    fetch("/api/user/auth", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
       if (response.status === 200) {
         console.log("logged in");
         document.getElementById("loginButton").hidden = true;
