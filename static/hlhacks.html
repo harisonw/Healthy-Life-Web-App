@@ -138,7 +138,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-primary">
+                    <button id="submitPostButton"type="button" class="btn btn-primary">
                       Submit
                     </button>
                   </div>
@@ -158,6 +158,23 @@
     </div>
 
     <script>
+
+      // get user for like/unlike view
+      var user = fetch("http://localhost:3000/api/user/get-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          placeholder: 'placeholder',
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          user = data;
+        });
+
+
       function getPosts() {
         console.log("starting");
         // get posts from database
@@ -169,7 +186,6 @@
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             // reverse loop through posts and display them
             for (var i = data.length - 1; i >= 0; i--) {
               var post = data[i];
@@ -178,10 +194,11 @@
               postCol.className = "col-md-4 my-2";
               var card = document.createElement("div");
               card.className = "card";
+              card.id = post._id; // use for like function
               var cardBody = document.createElement("div");
               cardBody.className = "card-body";
               var title = document.createElement("h5");
-              title.className = "mx-2 mt-2";
+              title.className = "mt-1";
               title.innerHTML = post.title;
               var description = document.createElement("p");
               description.className = "mx-2";
@@ -190,10 +207,19 @@
               image.className = "img-fluid card-img-top";
               image.src = post.image;
               var likeButton = document.createElement("button");
-              likeButton.className = "btn btn-primary mt-2 mx-2";
-              likeButton.innerHTML = "Like <small>(" + post.likes.length + ")</small>";
+              likeButton.id = post._id // use for like function
+              likeButton.className = "likeButton btn btn-primary mt-2";
+              // if user has liked post, show unlike button
+              console.log("id", user._id)
+              console.log("likes: " + post.likes);
+              if (post.likes.includes(user._id)) {
+                likeButton.innerHTML = "Unlike <small>(" + post.likes.length + ")</small>";
+              } else {
+                likeButton.innerHTML = "Like <small>(" + post.likes.length + ")</small>";
+              }
+              
               var time = document.createElement("p");
-              time.className = "text-secondary mx-2";
+              time.className = "text-secondary mb-0";
               // calculate time since post
               var timeSince = new Date() - new Date(post.createdAt);
               timeSince = Math.floor(timeSince / 1000 / 60);
@@ -203,20 +229,97 @@
                 timeSince = Math.floor(timeSince / 60);
                 time.innerHTML = timeSince + " Hours Ago";
               }
+              
+              // add user who posted
+              var userPosted = document.createElement("p");
+              userPosted.className = "text-secondary mb-0";
+              userPosted.innerHTML = "Posted by: " + post.user.fname;
+
               cardBody.appendChild(title);
               cardBody.appendChild(description);
               cardBody.appendChild(image);
               cardBody.appendChild(likeButton);
               cardBody.appendChild(time);
+              cardBody.appendChild(userPosted);
               card.appendChild(cardBody);
               postCol.appendChild(card);
               postRow.appendChild(postCol);
+            }
+          })
+          .then(() => {
+            // add event listeners to like buttons
+            var likeButtons = document.getElementsByClassName("likeButton");
+            for (var i = 0; i < likeButtons.length; i++) {
+              console.log("like button: :", likeButtons[i]);
+              likeButtons[i].addEventListener("click", function () {
+                likePost(this.id);
+                location.reload();
+              });
             }
           });
 
       };
 
       getPosts();
+
+      // when user likes a post, update the database
+      function likePost(postID) {
+        console.log("like post", postID);
+        var post = fetch("http://localhost:3000/api/posts/like", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            postID: postID,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+      };
+
+
+      // wait for dom to load
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("dom loaded");
+        // add event listener to submit post button
+        document
+          .getElementById("submitPostButton")
+          .addEventListener("click", function () {
+            console.log("submit post button clicked");
+            // get values from form
+            var title = document.getElementById("titleTextarea").value;
+            var body = document.getElementById("postTextarea").value;
+            var image = document.getElementById("formFile").value;
+            // check values are not empty
+            if (title == "" || body == "") {
+              alert("Please fill in all fields");
+              return;
+            }
+            // send post to database
+            var post = fetch("http://localhost:3000/api/posts/create", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                title: title,
+                body: body,
+                image: image,
+              }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log(data);
+              });
+          });
+      });
+
+
+
+
     </script>
 
     <!-- Footer -->
