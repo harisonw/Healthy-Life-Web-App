@@ -21,6 +21,9 @@ app.use("/", AuthPage);
 const PostRoute = require("./routes/posts");
 app.use("/api/posts", PostRoute);
 
+const ArticleRoute = require("./routes/articles");
+app.use("/api/articles", ArticleRoute);
+
 // Static must be after all routes, otherwise the protected routes will not work
 app.use("/", express.static(path.join(__dirname, "static")));
 
