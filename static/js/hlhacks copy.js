@@ -131,35 +131,27 @@ document.addEventListener("DOMContentLoaded", function () {
       // get values from form
       var title = document.getElementById("titleTextarea").value;
       var body = document.getElementById("postTextarea").value;
-      var image = document.getElementById("formFile").files[0];
+      var image = document.getElementById("formFile").value;
       // check values are not empty
-      if (title == "" || body == "" || image == null) {
+      if (title == "" || body == "") {
         alert("Please fill in all fields");
         return;
       }
-
-      // create form data
-      const formData = new FormData();
-      //console.log("title: ", title);
-      //console.log("body: ", body);
-      //console.log("image: ", image);
-      formData.append("title", title);
-      formData.append("body", body);
-      formData.append("image", image);
-      //console.log("form data: ", formData);
       // send post to database
-      var post = fetch("http://localhost:3000/api/posts/upload", {
+      var post = fetch("http://localhost:3000/api/posts/create", {
         method: "POST",
-        body: formData,
-      }).then((response) => {
-        json = response.json();
-        console.log(json);
-        if (response.status == 200) {
-          alert("Post uploaded successfully");
-          location.reload();
-        } else {
-          alert("Error uploading post");
-        }
-      });
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          body: body,
+          image: image,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
     });
 });
