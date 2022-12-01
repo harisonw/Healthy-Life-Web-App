@@ -34,7 +34,7 @@ function getPosts() {
         card.className = "card";
         card.id = post._id; // use for like function
         var cardBody = document.createElement("div");
-        cardBody.className = "card-body d-flex flex-column";
+        cardBody.className = "card-body";
         var title = document.createElement("h5");
         title.className = "mt-1";
         title.innerHTML = post.title;
@@ -43,7 +43,8 @@ function getPosts() {
         description.innerHTML = post.body;
         var image = document.createElement("img");
         image.className = "img-fluid card-img-top mb-2";
-        image.src = post.image;
+        image.src = "api/posts/uploads/" + post.photo;
+        //image.src = "http://localhost:3000/api/posts/uploads/" + post.photo;
         var likeButton = document.createElement("button");
         likeButton.id = post._id; // use for like function
         likeButton.className = "likeButton mt-auto btn btn-primary mt-2 ";
