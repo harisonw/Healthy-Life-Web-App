@@ -364,8 +364,39 @@
                       ></button>
                     </div>
                     <div class="modal-body">
-                      Show options to setup or disable 2FA depending on if it is
-                      enabled or not.
+                      <button
+                        id="twoFASetupButton"
+                        type="button"
+                        class="btn btn-primary mb-2"
+                      >Setup 2FA</button>
+                      <button
+                        id="twoFADisableButton"
+                        class="btn btn-primary"
+                        type="submit"
+                        hidden
+                      >Disable 2FA</button>
+                      <div id="twoFAEnableDiv" hidden>
+                      <img id="twoFAQRCode"> <!-- QR Code -->
+                      <p class="small" id="twoFASecret">
+                      </p>
+                      <form>
+                        <label for="input2FACode" class="form-label"
+                          >Enter 2FA Code:</label>
+                        <input type="text" class="form-control text-center" id="input2FACode" />
+                      </form>
+                      <button
+                        id="twoFASubmitCodeButton"
+                        class="btn btn-primary mt-2"
+                        type="submit"
+                      >Submit Code</button>
+                      </div>
+                      <p id="twoFAFailMessage" style="display: none">
+                        <small>Wrong 2FA Code!</small>
+                      <p id="twoFASuccessMessage" style="display: none">
+                        <small>2FA Enabled!</small>
+                      <p id="twoFADisableMessage" style="display: none">
+                        <small>2FA Disabled!</small>
+                      </p>
                     </div>
                     <div class="modal-footer">
                       <button

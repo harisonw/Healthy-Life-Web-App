@@ -47,6 +47,11 @@ user = getUserData().then((user) => {
   }
 
   document.getElementById("newsletterCheck").checked = user.newsletter;
+  // 2fa check
+  if (user.twoFAVerified == true) {
+    document.getElementById("twoFASetupButton").hidden = true;
+    document.getElementById("twoFADisableButton").hidden = false;
+  }
 });
 
 //when save user info button pressed print
@@ -221,3 +226,87 @@ document
     alert("Account Deleted!");
     window.location.href = "../";
   });
+
+
+//when disable2FA button pressed send to server
+document
+  .getElementById("twoFADisableButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("Disable 2FA Button Pressed");
+    //send to server
+    fetch("http://localhost:3000/api/user/disable-2fa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    document.getElementById("twoFADisableMessage").style.display = "block";
+    //wait 3 seconds then hide message
+    setTimeout(function () {
+      document.getElementById("twoFADisableMessage").style.display = "none";
+    }, 3000);
+    window.location.reload();
+  });
+
+//when twoFASetupButton button press show twoFAEnableDiv and hide twoFASetupButton
+document
+  .getElementById("twoFASetupButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("2FA Setup Button Pressed");
+
+    //send to server
+    fetch("http://localhost:3000/api/user/setup-2fa", {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        document.getElementById("twoFASecret").innerHTML = "2FA Secret: \n" + data.secret.base32;
+        document.getElementById("twoFAEnableDiv").hidden = false;
+        document.getElementById("twoFASetupButton").style.display = "none";
+        // qr code
+        document.getElementById("twoFAQRCode").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + data.secret.otpauth_url;
+  })
+});
+
+//when twoFASubmitCodeButton button pressed send to server
+document
+  .getElementById("twoFASubmitCodeButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("2FA Submit Code Button Pressed");
+    var code = document.getElementById("input2FACode").value;
+    //send to server
+    fetch("http://localhost:3000/api/user/verify-2fa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        code: code,
+      }),
+    })
+      .then((response) => {
+        console.log(response.status);
+        if (response.status == "200") {
+          document.getElementById("twoFASuccessMessage").style.display = "block";
+          //wait 3 seconds then hide message
+          setTimeout(function () {
+            document.getElementById("twoFASuccessMessage").style.display = "none";
+          }, 3000);
+          window.location.reload();
+        } else {
+          document.getElementById("twoFAFailMessage").style.display = "block";
+          //wait 3 seconds then hide message
+          setTimeout(function () {
+            document.getElementById("twoFAFailMessage").style.display = "none";
+          }, 3000);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+  

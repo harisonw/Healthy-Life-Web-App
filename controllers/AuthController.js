@@ -271,7 +271,8 @@ const updateUser = async (req, res) => {
         }
       );
     } catch (err) {
-      return res.json({ status: "error", error: err });
+      return res.c
+      return res.code().json({ status: "error", error: err });
     }
     res.json({
       status: "ok",
@@ -393,7 +394,7 @@ const verify2FA = async (req, res) => {
         message: "2FA verified successfully!",
       });
     } else {
-      res.json({
+      res.status(401).json({
         status: "error",
         error: "2FA code is incorrect!",
       });
@@ -405,6 +406,31 @@ const verify2FA = async (req, res) => {
     });
   }
 };
+
+const disable2FA = async (req, res) => {
+  user = req.user;
+  try {
+    console.log("user", user);
+    await User.updateOne(
+      { _id: user.id },
+      {
+        $set: {
+          twoFAVerified: false,
+        },
+      }
+    );
+    res.json({
+      status: "ok",
+      message: "2FA disabled successfully!",
+    });
+  } catch (error) {
+    res.json({
+      status: "error",
+      error: error,
+    });
+  }
+};
+
 
 const auth = (req, res) => {
   try {
@@ -430,5 +456,6 @@ module.exports = {
   updateUserInfo,
   setup2FA,
   verify2FA,
+  disable2FA,
   auth,
 };
