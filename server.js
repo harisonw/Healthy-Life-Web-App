@@ -14,12 +14,14 @@ var db = "mongodb://127.0.0.1:27017/HealthyLife";
 mongoose.connect(db);
 
 app.use("/api/user", AuthRoute);
-app.use("/", express.static(path.join(__dirname, "static")));
 
 const AuthPage = require("./routes/authPage");
 app.use("/", AuthPage);
 
 const PostRoute = require("./routes/posts");
 app.use("/api/posts", PostRoute);
+
+// Static must be after all routes, otherwise the protected routes will not work
+app.use("/", express.static(path.join(__dirname, "static")));
 
 app.listen(3000, () => console.log("server listening on port " + port));
