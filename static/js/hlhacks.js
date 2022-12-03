@@ -66,9 +66,12 @@ function getPosts() {
         timeSince = Math.floor(timeSince / 1000 / 60);
         if (timeSince < 60) {
           time.innerHTML = timeSince + " Minutes Ago";
-        } else {
+        } else if (timeSince < 1440) {
           timeSince = Math.floor(timeSince / 60);
           time.innerHTML = timeSince + " Hours Ago";
+        } else {
+          timeSince = Math.floor(timeSince / 1440);
+          time.innerHTML = timeSince + " Days Ago";
         }
 
         // add user who posted
