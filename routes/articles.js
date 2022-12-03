@@ -105,6 +105,33 @@ router.get ("/", auth, async (req, res) => {
       });
 });
 
+router.get("/category/:category", auth, async (req, res) => {
+    
+    // catagory?catagory=health
+
+    //console.log(req.query.category);
+
+    newsapi.v2.everything({
+        q: req.params.category,
+        sources: 'bbc-news',
+        domains: 'bbc.co.uk',
+        from: '2022-11-07',
+        to: '2022-12-01',
+        language: 'en',
+        sortBy: 'relevancy',
+        page: 1
+      }).then(response => {
+        res.send(response);
+        /*
+          {
+            status: "ok",
+            articles: [...]
+          }
+        */
+      });
+});
+
+
 
 
 
