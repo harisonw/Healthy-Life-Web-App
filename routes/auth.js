@@ -17,6 +17,8 @@ router.post("/update-user-info", auth, AuthController.updateUserInfo);
 router.post("/setup-2fa", auth, AuthController.setup2FA);
 router.post("/verify-2fa", auth, AuthController.verify2FA);
 router.post("/disable-2fa", auth, AuthController.disable2FA);
+router.get("/checkNewsletter", auth, AuthController.checkNewsletter);
+router.get("/optInNewsletter", auth, AuthController.optInNewsletter);
 
 router.post("/auth", AuthController.auth);
 

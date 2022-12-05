@@ -141,16 +141,41 @@ const getUser = async (req, res) => {
   user = req.user;
   try {
     console.log("user", user);
-    try {
       const userFound = await User.findOne({ _id: user.id }, "-password");
-      return res.json(userFound);
-    } catch (err) {
-      return res.json({ status: "error", error: err });
-    }
+      return res.json(userFound); 
   } catch (err) {
     return res.json({ status: "error", error: err });
   }
 };
+
+const checkNewsletter = async (req, res) => {
+  console.log("checkNewsletter");
+  user = req.user;
+  try {
+    console.log("user", user);
+    const userFound = await User.findOne({ _id: user.id }, "newsletter");
+    newsletter = userFound.newsletter;
+    return res.json({ newsletter: newsletter });
+  } catch (err) {
+    return res.json({ status: "error", error: err });
+  }
+};
+
+const optInNewsletter = async (req, res) => {
+  console.log("updateNewsletter");
+  user = req.user;
+  try {
+    console.log("user", user);
+    const userFound = await User.findOneAndUpdate(
+      { _id: user.id },
+      { newsletter: true }
+    );
+    return res.json({ status: "ok", message: "Newsletter opt-in successful!" });
+  } catch (err) {
+    return res.json({ status: "error", error: err });
+  }
+};
+
 
 const changePassword = async (req, res) => {
   user = req.user;
@@ -458,4 +483,6 @@ module.exports = {
   verify2FA,
   disable2FA,
   auth,
+  checkNewsletter,
+  optInNewsletter,
 };

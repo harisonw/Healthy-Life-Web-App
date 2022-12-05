@@ -55,4 +55,33 @@ window.onload = function () {
         top3Div.appendChild(colDiv);
       }
     });
+
+    // setup banner - show if user is not already opted in to the newsletter
+    fetch("/api/user/checkNewsletter")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      console.log(data.newsletter);
+      if (data.newsletter === true) {
+        document.getElementById("newsletterBanner").style.display = "none";
+      }
+    });
 };
+
+// when the user clicks the "opt in" button, send a request to the server to update the user's newsletter status
+document.getElementById("newsletterButton").addEventListener("click", function () {
+  fetch("/api/user/optInNewsletter")
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        document.getElementById("newsletterButton").innerHTML = "Opted In!";
+        // wait 3 seconds and hide the banner
+        setTimeout(function () {
+          document.getElementById("newsletterBanner").style.display = "none";
+        }, 3000);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
