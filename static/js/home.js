@@ -33,7 +33,8 @@ window.onload = function () {
         let aTag = document.createElement("a");
         aTag.href = articlesArray[i].url;
         let imgTag = document.createElement("img");
-        //imgTag.src = articlesArray[i].image;
+        // only works with manually added articles function not NEWS API
+        imgTag.src = articlesArray[i].image;
         imgTag.classList.add("card-img-top");
         imgTag.alt = "...";
         let cardBodyDiv = document.createElement("div");
