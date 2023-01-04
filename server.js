@@ -27,4 +27,11 @@ app.use("/api/articles", ArticleRoute);
 // Static must be after all routes, otherwise the protected routes will not work
 app.use("/", express.static(path.join(__dirname, "static")));
 
-app.listen(3000, () => console.log("server listening on port " + port));
+//app.listen(3000, () => console.log("server listening on port " + port));
+
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(3000, () => console.log("server listening on port " + port));
+}
+
+// export app and db for testing
+module.exports = { app, db}

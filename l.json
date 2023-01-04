@@ -1,0 +1,132 @@
+{
+  "status": "ok",
+  "totalResults": 0,
+  "articles": [
+    {
+      "title": "World Aids Day: Why the Middle East lags behind in fighting HIV - BBC",
+      "author": "https://www.facebook.com/bbcnews",
+      "source": { "Id": null, "Name": "BBC News" },
+      "publishedAt": "2022-12-01T12:52:51Z",
+      "url": "https://www.bbc.com/news/world-middle-east-63821977"
+    },
+    {
+      "title": "St. Louis area hospitals at capacity with flu cases continuing steep rise - St. Louis Post-Dispatch",
+      "author": "Michele Munz",
+      "source": { "Id": null, "Name": "STLtoday.com" },
+      "publishedAt": "2022-12-01T12:45:00Z",
+      "url": "https://www.stltoday.com/lifestyles/health-med-fit/health/st-louis-area-hospitals-at-capacity-with-flu-cases-continuing-steep-rise/article_f79af9f6-908c-5cc8-8fe3-1758a47f49c3.html"
+    },
+    {
+      "title": "Rare Genetic Phenomenon Linked to Neuron Function and Schizophrenia - Neuroscience News",
+      "author": "Neuroscience News",
+      "source": { "Id": null, "Name": "Neurosciencenews.com" },
+      "publishedAt": "2022-12-01T11:57:06Z",
+      "url": "https://neurosciencenews.com/genetics-neuron-function-schizophrenia-21980/"
+    },
+    {
+      "title": "6 Everyday Activities That Naturally Release Dopamine In Your Brain - HuffPost",
+      "author": "Jillian Wilson",
+      "source": { "Id": null, "Name": "HuffPost" },
+      "publishedAt": "2022-12-01T10:45:28Z",
+      "url": "https://www.huffpost.com/entry/activities-release-dopamine-in-brain_l_6377bf04e4b06d5b6094f0d7"
+    },
+    {
+      "title": "It Ain't Over Till It's Over…but It's Never Over — Emerging and Reemerging Infectious Diseases | NEJM - nejm.org",
+      "author": null,
+      "source": { "Id": null, "Name": "nejm.org" },
+      "publishedAt": "2022-12-01T09:48:08Z",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMp2213814"
+    },
+    {
+      "title": "Here's how to know when your child is too sick for school - CNN",
+      "author": "Madeline Holcombe",
+      "source": { "Id": "cnn", "Name": "CNN" },
+      "publishedAt": "2022-12-01T01:43:00Z",
+      "url": "https://www.cnn.com/2022/11/30/health/rsv-kids-school-wellness/index.html"
+    },
+    {
+      "title": "Eli Lilly's Alzheimer's drug clears more amyloid early than Aduhelm in first-ever head-to-head. Will it matter? - Endpoints News",
+      "author": "Lei Lei Wu",
+      "source": { "Id": null, "Name": "Endpoints News" },
+      "publishedAt": "2022-11-30T23:20:50Z",
+      "url": "https://endpts.com/eli-lillys-alzheimers-drug-clears-more-amyloid-early-than-aduhelm-in-first-ever-head-to-head-will-it-matter/"
+    },
+    {
+      "title": "Holiday heart syndrome: Doctors warning about this ‘perfect storm’ - WJW FOX 8 News Cleveland",
+      "author": "Jennifer Jordan",
+      "source": { "Id": null, "Name": "fox8.com" },
+      "publishedAt": "2022-11-30T22:09:20Z",
+      "url": "https://fox8.com/news/holiday-heart-syndrome-doctors-warning-about-this-perfect-storm/"
+    },
+    {
+      "title": "US flu outbreak: 6MILLION Americans have been infected by flu and 3,000 have died - Daily Mail",
+      "author": "Luke Andrews",
+      "source": { "Id": null, "Name": "Daily Mail" },
+      "publishedAt": "2022-11-30T22:01:53Z",
+      "url": "https://www.dailymail.co.uk/health/article-11487475/US-flu-outbreak-6MILLION-Americans-infected-flu-3-000-died.html"
+    },
+    {
+      "title": "Gut Microbes Influence Binge-Eating of Sweet Treats - Neuroscience News",
+      "author": "Neuroscience News",
+      "source": { "Id": null, "Name": "Neurosciencenews.com" },
+      "publishedAt": "2022-11-30T22:01:46Z",
+      "url": "https://neurosciencenews.com/gut-microbes-sweet-binge-21975/"
+    },
+    {
+      "title": "Sleepyheads need these three habits to get rid of grogginess: study - New York Post ",
+      "author": "Brooke Steinberg",
+      "source": { "Id": null, "Name": "New York Post" },
+      "publishedAt": "2022-11-30T21:26:00Z",
+      "url": "https://nypost.com/2022/11/30/sleepyheads-need-these-3-habits-to-get-rid-of-grogginess-study/"
+    },
+    {
+      "title": "Five Precepts of Buddhism May Be Linked to Lower Depression Risk - Neuroscience News",
+      "author": "Neuroscience News",
+      "source": { "Id": null, "Name": "Neurosciencenews.com" },
+      "publishedAt": "2022-11-30T21:16:45Z",
+      "url": "https://neurosciencenews.com/buddhism-depression-21973/"
+    },
+    {
+      "title": "CDC expands wastewater testing for polio to Michigan and Pennsylvania - The Washington Post",
+      "author": "Lena H. Sun",
+      "source": { "Id": "the-washington-post", "Name": "The Washington Post" },
+      "publishedAt": "2022-11-30T21:01:00Z",
+      "url": "https://www.washingtonpost.com/health/2022/11/30/polio-wastewater-testing/"
+    },
+    {
+      "title": "Children who watch TV more than two hours a day are more likely to face addictions later in life - Daily Mail",
+      "author": "Luke Andrews",
+      "source": { "Id": null, "Name": "Daily Mail" },
+      "publishedAt": "2022-11-30T20:40:53Z",
+      "url": "https://www.dailymail.co.uk/health/article-11486341/Children-watch-TV-two-hours-day-likely-face-addictions-later-life.html"
+    },
+    {
+      "title": "Woman gets rare case of 'toxic squash syndrome' after drinking bitter gourd juice - Livescience.com",
+      "author": "Nicoletta Lanese",
+      "source": { "Id": null, "Name": "Live Science" },
+      "publishedAt": "2022-11-30T20:13:06Z",
+      "url": "https://www.livescience.com/bitter-bottle-gourd-poisoning-case"
+    },
+    {
+      "title": "RSV and flu surge in US ahead of holidays – what to know - BBC",
+      "author": "https://www.facebook.com/bbcnews",
+      "source": { "Id": null, "Name": "BBC News" },
+      "publishedAt": "2022-11-30T16:38:52Z",
+      "url": "https://www.bbc.com/news/world-us-canada-63645487"
+    },
+    {
+      "title": "'Zombie virus' discovered after being trapped in Siberian permafrost for nearly 50,000 years - Sky News",
+      "author": "Sky",
+      "source": { "Id": null, "Name": "Sky.com" },
+      "publishedAt": "2022-11-30T16:11:47Z",
+      "url": "https://news.sky.com/story/zombie-virus-discovered-after-being-trapped-in-siberian-permafrost-for-nearly-50-000-years-12758634"
+    },
+    {
+      "title": "Scientists develop world's first test for pancreatic cancer - using tiny WORMS that sniff out tumors - Daily Mail",
+      "author": "Caitlin Tilley",
+      "source": { "Id": null, "Name": "Daily Mail" },
+      "publishedAt": "2022-11-30T16:04:12Z",
+      "url": "https://www.dailymail.co.uk/health/article-11485999/Scientists-develop-worlds-test-pancreatic-cancer-using-tiny-WORMS-sniff-tumors.html"
+    }
+  ]
+}

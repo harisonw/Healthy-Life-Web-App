@@ -52,16 +52,16 @@ const register = (req, res) => {
       .catch((error) => {
         if (error.code === 11000) {
           console.log("Duplicate key");
-          res.json({
+          res.status(400).json({
             status: "error",
             error: "Email already exists!",
           });
         } else {
           console.log("Error: not duplicate key");
-          res.json({
+          res.status(400).json({
             status: "error",
             message: "An error occurred!",
-            error: error,
+            error: error._message,
           });
         }
       });
@@ -112,7 +112,7 @@ const login = (req, res) => {
                 id: user._id,
               });
             } else {
-              res.json({
+              res.status(400).json({
                 status: "error",
                 error:
                   "No User found with this email or Password for the user is incorrect!",
@@ -120,7 +120,7 @@ const login = (req, res) => {
             }
           });
         } else {
-          res.json({
+          res.status(400).json({
             status: "error",
             error:
               "No User found with this email or Password for the user is incorrect!",
