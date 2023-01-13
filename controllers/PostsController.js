@@ -31,13 +31,23 @@ const JWT_SECRET = process.env.JWT_SECRET;
 //
 
 // create a new post with image located in routes/posts.js
+
+const sanitizeHTML = require("sanitize-html");
+const { title } = require("process");
+
 const uploadPost = async (req, res) => {
-  // update post in db
+  // sanitize the title, body and image file name
+  console.log("req.body: ", req.body.title);
+  const title = sanitizeHTML(req.body.title);
+  console.log("title: ", title);
+  const body = sanitizeHTML(req.body.body);
+  const newFileName = sanitizeHTML(req.newFileName);
+    // update post in db
   try {
     await Post.findByIdAndUpdate(req.postID, {
-      title: req.body.title,
-      body: req.body.body,
-      photo: req.newFileName,
+      title: title,
+      body: body,
+      photo: newFileName,
     });
     // find updated post with new title and body
     const updatedPost = await Post.findById(req.postID);

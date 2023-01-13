@@ -1,8 +1,7 @@
 {
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest --watchAll --detectOpenHandles",
-    "start dev": "nodemon -r dotenv/config server.js dotenv_config_path=env/local.env"
+    "test": "jest --watchAll --detectOpenHandles"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -16,6 +15,7 @@
     "mongoose": "^6.7.3",
     "multer": "^1.4.5-lts.1",
     "newsapi": "^2.4.1",
+    "sanitize-html": "^2.8.1",
     "speakeasy": "^2.0.0"
   },
   "devDependencies": {
