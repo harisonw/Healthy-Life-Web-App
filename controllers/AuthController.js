@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 const { application } = require("express");
 const speakeasy = require("speakeasy");
 
-const JWT_SECRET =
-  "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const register = (req, res) => {
   var fname = req.body.fname;

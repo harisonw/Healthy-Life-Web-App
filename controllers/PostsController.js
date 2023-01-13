@@ -7,8 +7,7 @@ const { auth } = require("../middleware/auth-user");
 
 const path = require("path");
 
-const JWT_SECRET =
-  "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 //create a new post
 

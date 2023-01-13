@@ -4,8 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const { auth } = require("../middleware/auth-user");
 
-const JWT_SECRET =
-  "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const PostsController = require("../controllers/PostsController");
 

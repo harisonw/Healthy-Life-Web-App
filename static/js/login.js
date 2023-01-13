@@ -16,7 +16,6 @@ async function registerUser(event) {
     password: password1,
     newsletter,
   };
-  console.log(data);
   const result = await fetch("api/user/register", {
     method: "POST",
     headers: {
@@ -28,7 +27,33 @@ async function registerUser(event) {
   console.log(result);
 
   if (result.status === "ok") {
-    alert("User registered successfully");
+    // login
+    console.log("login"); 
+    const result = await fetch("api/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => res.json());
+  
+    console.log(result);
+  
+    if (result.status === "ok") {
+      localStorage.setItem("token", result.token);
+      window.location.href = "home.html";
+    } else {
+      alert(result.error);
+    }
+
+
+    // // reset form
+    // document.getElementById("inputName").value = "";
+    // document.getElementById("inputEmailR1").value = "";
+    // document.getElementById("inputEmailR2").value = "";
+    // document.getElementById("inputPasswordR1").value = "";
+    // document.getElementById("inputPasswordR2").value = "";
+    // alert("User registered successfully, you can now login using your credentials");
   } else {
     alert(result.error);
   }

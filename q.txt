@@ -1,0 +1,36 @@
+Software Product Implementation:
+Unit 5. Web Application Security:
+
+• Which security issues are you considering on the client side? 
+I am considering the security issues on the client side by using the following methods:
+
+• Which security issues are you considering on the server side? 
+I am considering the security issues on the server side by using the following methods:
+1. Using the HTTPS protocol to encrypt the data.
+2. Using the SSL certificate to encrypt the data.
+3. Using the authentication strategy to authenticate the user.
+4. Using the authorization strategy to authorize the user.
+5. Using the session management strategy to manage the session.
+6. Using the input validation strategy to validate the input.
+
+7. Using environment variables to store Secrets and API keys.
+8. Using .gitignore to ignore the sensitive files and folders such as the .env file and the 
+
+
+• What authentication strategy have you implemented on the server? 
+I have implemented the authentication strategy on the server by using the following methods:
+1. Using a username,password and optionally 2FA to authenticate the user.
+2. After a user is authenticated, the server will generate a JWT and send it to the client as a cookie.
+3. The client will send the cookie with the JWT to the server for every request.
+4. The server will validate the JWT for routes that require authorization and if it is valid, the server will process the request.
+5. If the JWT is invalid, the server will return a 401 Unauthorized response.
+
+
+
+Unit 6. Frameworks and Architecture:
+• How did you would implement the DRY principle in the HLSP? 
+
+• How did you would overcome the STATE problem in the HLSP? 
+
+• How did you would architect the separation of concerns (e.g., Domain Model vs 
+Presentation)?

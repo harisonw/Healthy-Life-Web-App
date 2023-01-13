@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET =
-  "gb32hj4rgyT^%^%R^ygahjgdfajsh7*^&*^&*T'#'@~@ddfeqgwrlkjnwefr";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const auth = (req, res, next) => {
   try {

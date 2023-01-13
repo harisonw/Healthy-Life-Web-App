@@ -8,7 +8,7 @@ const { auth } = require("../middleware/auth-user.js");
 const NewsAPI = require("newsapi");
 const { default: mongoose } = require("mongoose");
 const { findById } = require("../models/Post.js");
-const newsapi = new NewsAPI("fe54e60e747c4e46b679a70c38379f11");
+const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 
 // for user health
 const User = require("../models/User.js");
@@ -264,13 +264,36 @@ router.get("/category/:category", auth, async (req, res) => {
 
   //console.log(req.query.category);
 
+  // get current date
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = yyyy + "-" + mm + "-" + dd;
+
+  console.log(today);
+
+  // get date 1 month ago
+  var oneMonthAgo = new Date();
+  var m = oneMonthAgo.getMonth();
+  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+  
+  // If still in same month, set date to last day of previous month
+  if (oneMonthAgo.getMonth() == m) oneMonthAgo.setDate(0);
+  oneMonthAgo.setHours(0, 0, 0, 0);
+
+  oneMonthAgo = oneMonthAgo.toISOString().split("T")[0];
+
+  console.log(oneMonthAgo);
+
   newsapi.v2
     .everything({
       q: req.params.category,
       sources: "bbc-news",
       domains: "bbc.co.uk",
-      from: "2022-11-07",
-      to: "2022-12-01",
+      from: oneMonthAgo,
+      to: today,
       language: "en",
       sortBy: "relevancy",
       page: 1,
