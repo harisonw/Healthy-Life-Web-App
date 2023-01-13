@@ -41,7 +41,7 @@ async function registerUser(event) {
   
     if (result.status === "ok") {
       localStorage.setItem("token", result.token);
-      window.location.href = "home.html";
+      window.location.href = "welcome.html";
     } else {
       alert(result.error);
     }

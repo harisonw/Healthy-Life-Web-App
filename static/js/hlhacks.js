@@ -96,7 +96,13 @@ function getPosts() {
       for (var i = 0; i < likeButtons.length; i++) {
         console.log("like button: :", likeButtons[i]);
         likeButtons[i].addEventListener("click", function () {
-          likePost(this.id);
+          // check user login
+          console.log("User: ", user);
+          if (user._id != null) {
+            likePost(this.id);
+          } else {
+            alert("Please login to like posts");
+          }
           location.reload();
         });
       }

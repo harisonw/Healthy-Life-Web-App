@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HL Home</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"
+          ><img src="img/Healthy_Life-Logo-White.png" alt="HL Logo" height="40"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="home.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="profile.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
+              </a>
+              <!-- Category Dropdown, Would be good to populate from database of all Categories-->
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="category.html?category=Health"
+                    >Health</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="category.html?category=Exercise"
+                    >Exercise</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="category.html?category=Loosing Weight"
+                    >Loosing Weight</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="category.html?category=Gaining Weight"
+                    >Gaining Weight</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="category.html?category=Eating Healthy"
+                    >Eating Healthy</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="hlhacks.html"
+                >HL Hacks</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="profile.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Profile
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="connections.html"
+                    >Connections</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--- Only show if not signed in, else if logged in show logout button --->
+          <a
+            id="loginButton"
+            class="btn btn-primary ms-auto"
+            href="login.html"
+            role="button"
+            >Login or Register</a
+          >
+          <a
+            id="logoutButton"
+            class="btn btn-primary ms-auto"
+            href="/api/user/logout"
+            hidden="hidden"
+            role="button"
+            >Logout</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner to encourage users to opt into the newsletter -->
+
+    <div id="newsletterBanner" class="text-bg-success text-center text-white">
+      <div class="text-center p-2">
+        <strong
+          >Opt in for our newsletter to get the latest articles to your
+          inbox!</strong
+        >
+        <button id="newsletterButton" type="button" class="btn btn-primary">
+          Opt IN!
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h1 class="mt-4">Welcome to Healthy Life!</h1>
+          <p>
+            Healthy Life is a website dedicated to helping you live a healthier
+            life. We have a wide range of articles on a variety of topics to
+            help you achieve your goals. We also have a community of people who
+            are also trying to live a healthier life and share their Heathier
+            Life Hacks on the HL Hacks page.
+          </p>
+          Recommended Actions to Get Started on HL:
+          <ol>
+            <li>
+              Go to the profile page and fill out your Heath Info, this will
+              help us to recommend relevant articles to you in the Top 3
+              Recommended Articles section on the home page.
+            </li>
+            <li>
+              Go to the connections page and link with your Apple Watch or
+              Fitbit to help us recommend even better articles to you in the Top
+              3 Recommended Articles section on the home page.
+            </li>
+            <li>Go to the profile page and Setup 2FA to secure your account</li>
+            <li>
+              Go to the Categories page and read articles from the categories
+              that interest you.
+            </li>
+            <li>
+              Go to the HL Hacks page and read HL Hacks from the community.
+            </li>
+            <li>
+              Go to the HL Hacks page and share your first Heathier Life Hack
+              with the community.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white mt-3">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2022 Copyright: Healthy Life
+      </div>
+    </footer>
+
+    <script src="js/loginButton.js"></script>
+    <script src="js/home.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
