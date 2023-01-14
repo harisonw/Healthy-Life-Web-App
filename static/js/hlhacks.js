@@ -141,6 +141,13 @@ document.addEventListener("DOMContentLoaded", function () {
       var title = document.getElementById("titleTextarea").value;
       var body = document.getElementById("postTextarea").value;
       var image = document.getElementById("formFile").files[0];
+      // check to make sure user is logged in
+      if (user._id == null) {
+        alert("Please login to post");
+        // redirect to login page
+        window.location.href = "login.html";
+        return;
+      }
       // check values are not empty
       if (title == "" || body == "" || image == null) {
         alert("Please fill in all fields");

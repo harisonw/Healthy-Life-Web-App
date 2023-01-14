@@ -18,6 +18,10 @@ router.get("connections.html", auth, (req, res, next) => {
   res.sendFile('connections.html', { root: path.join(__dirname, '../static') });
 });
 
+router.get("/connections.html", auth, (req, res, next) => {
+  res.sendFile('connections.html', { root: path.join(__dirname, '../static') });
+});
+
 
 
 module.exports = router;

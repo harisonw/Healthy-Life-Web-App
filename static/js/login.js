@@ -118,3 +118,11 @@ async function resetPasswordUser(event) {
     alert(result.error);
   }
 }
+
+// if parremeter error = NotAuthorized then show alert
+const urlParams = new URLSearchParams(window.location.search);
+const error = urlParams.get("error");
+if (error === "NotAuthorized") {
+  alert("Not authorized to do this action, please login to continue");
+}
+
