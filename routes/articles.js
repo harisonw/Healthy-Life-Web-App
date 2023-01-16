@@ -51,8 +51,10 @@ router.get("/", auth, async (req, res) => {
     // article for elderly
   }
 
-  // BMI
-  user.BMI = user.weight / (user.height * user.height);
+  // BMI]
+  //user height in m from cm
+  user.heightInM = user.height / 100;
+  user.BMI = user.weight / (user.heightInM * user.heightInM);
   NHS_MAX_BMI = 25;
   NHS_MIN_BMI = 18.5;
   if (user.BMI > NHS_MAX_BMI) {
@@ -113,7 +115,8 @@ router.get("/", auth, async (req, res) => {
   }
 
   // Sleep
-  if (user.avgSleepHrsPD == "0-3" || user.avgSleepHrsPD == "4-5") {
+  console.log("sleep: " + user.avgHrsSleepPD)
+  if (user.avgHrsSleepPD == "0-3" || user.avgHrsSleepPD == "4-5") {
     articlesToReturn.articles.push({
       title: "How to get a good night's sleep",
       url: "https://www.nhs.uk/every-mind-matters/coronavirus/how-to-fall-asleep-faster-and-sleep-better/",
