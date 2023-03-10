@@ -1,5 +1,5 @@
 async function getUserData() {
-  const response = await fetch("http://localhost:3000/api/user/get-user", {
+  const response = await fetch("api/user/get-user", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -65,7 +65,7 @@ document
     var email = document.getElementById("inputEmail").value;
     var newsletter = document.getElementById("newsletterCheck").checked;
     //send to server
-    fetch("http://localhost:3000/api/user/update-user", {
+    fetch("api/user/update-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ document
     } else if (newPassword1.length < 8) {
       alert("New password must be at least 8 characters!");
     } else {
-      fetch("http://localhost:3000/api/user/change-password", {
+      fetch("api/user/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -176,7 +176,7 @@ document
     }
 
     //send to server
-    fetch("http://localhost:3000/api/user/update-user-info", {
+    fetch("api/user/update-user-info", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -210,14 +210,14 @@ document
     event.preventDefault();
     console.log("Delete Account Button Pressed");
     //send to server
-    fetch("http://localhost:3000/api/user/delete-account", {
+    fetch("api/user/delete-account", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
     });
     // logout user
-    fetch("http://localhost:3000/api/user/logout", {
+    fetch("api/user/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -227,7 +227,6 @@ document
     window.location.href = "../";
   });
 
-
 //when disable2FA button pressed send to server
 document
   .getElementById("twoFADisableButton")
@@ -235,7 +234,7 @@ document
     event.preventDefault();
     console.log("Disable 2FA Button Pressed");
     //send to server
-    fetch("http://localhost:3000/api/user/disable-2fa", {
+    fetch("api/user/disable-2fa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -257,19 +256,22 @@ document
     console.log("2FA Setup Button Pressed");
 
     //send to server
-    fetch("http://localhost:3000/api/user/setup-2fa", {
+    fetch("api/user/setup-2fa", {
       method: "POST",
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        document.getElementById("twoFASecret").innerHTML = "2FA Secret: \n" + data.secret.base32;
+        document.getElementById("twoFASecret").innerHTML =
+          "2FA Secret: \n" + data.secret.base32;
         document.getElementById("twoFAEnableDiv").hidden = false;
         document.getElementById("twoFASetupButton").style.display = "none";
         // qr code
-        document.getElementById("twoFAQRCode").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + data.secret.otpauth_url;
-  })
-});
+        document.getElementById("twoFAQRCode").src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+          data.secret.otpauth_url;
+      });
+  });
 
 //when twoFASubmitCodeButton button pressed send to server
 document
@@ -279,7 +281,7 @@ document
     console.log("2FA Submit Code Button Pressed");
     var code = document.getElementById("input2FACode").value;
     //send to server
-    fetch("http://localhost:3000/api/user/verify-2fa", {
+    fetch("api/user/verify-2fa", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -291,10 +293,12 @@ document
       .then((response) => {
         console.log(response.status);
         if (response.status == "200") {
-          document.getElementById("twoFASuccessMessage").style.display = "block";
+          document.getElementById("twoFASuccessMessage").style.display =
+            "block";
           //wait 3 seconds then hide message
           setTimeout(function () {
-            document.getElementById("twoFASuccessMessage").style.display = "none";
+            document.getElementById("twoFASuccessMessage").style.display =
+              "none";
           }, 3000);
           window.location.reload();
         } else {
@@ -309,4 +313,3 @@ document
         console.error("Error:", error);
       });
   });
-  

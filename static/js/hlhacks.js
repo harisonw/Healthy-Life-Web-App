@@ -1,5 +1,5 @@
 // get user for like/unlike view
-var user = fetch("http://localhost:3000/api/user/get-user", {
+var user = fetch("api/user/get-user", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -16,7 +16,7 @@ var user = fetch("http://localhost:3000/api/user/get-user", {
 function getPosts() {
   console.log("starting");
   // get posts from database
-  var posts = fetch("http://localhost:3000/api/posts/get-all", {
+  var posts = fetch("api/posts/get-all", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -44,7 +44,7 @@ function getPosts() {
         var image = document.createElement("img");
         image.className = "img-fluid card-img-top mb-2";
         image.src = "api/posts/uploads/" + post.photo;
-        //image.src = "http://localhost:3000/api/posts/uploads/" + post.photo;
+        //image.src = "api/posts/uploads/" + post.photo;
         var likeButton = document.createElement("button");
         likeButton.id = post._id; // use for like function
         likeButton.className = "likeButton mt-auto btn btn-primary mt-2 ";
@@ -114,7 +114,7 @@ getPosts();
 // when user likes a post, update the database
 function likePost(postID) {
   console.log("like post", postID);
-  var post = fetch("http://localhost:3000/api/posts/like", {
+  var post = fetch("api/posts/like", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formData.append("image", image);
       //console.log("form data: ", formData);
       // send post to database
-      var post = fetch("http://localhost:3000/api/posts/upload", {
+      var post = fetch("api/posts/upload", {
         method: "POST",
         body: formData,
       }).then((response) => {

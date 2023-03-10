@@ -1,649 +1,536 @@
 {
-	"info": {
-		"_postman_id": "96f26287-172b-4142-8f87-644ec87d0f9a",
-		"name": "Node IA CW",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Register User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"bob2@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"fname\": \"bob\",\r\n    \"newsletter\": \"true\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Register User Copy",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"harison@gmail.com\",\r\n    \"password\": \"harison123\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/register",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"dave@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"twoFACode\": \"903391\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User Copy",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"bob@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Change Password",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"oldPassword\": \"123456789\",\r\n    \"newPassword\": \"12345678\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/change-password",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"change-password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/delete-account",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"delete-account"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"fname\": \"Bob1\",\r\n    \"email\": \"bob@gmail.com\",\r\n    \"newsletter\": \"false\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/update-user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"update-user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User Info",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTcyOTE3NywiZXhwIjoxNjY5NzMyNzc3fQ.7tB00NyM1202ZEQXb-r-sYmqM0o1K_1SHCKOvX5lnQQ\",\r\n    \"sex\": \"Male\",\r\n    \"age\": \"40\",\r\n    \"height\": \"180\",\r\n    \"weight\": \"90\",\r\n    \"avgHrsExercisePW\": \"None\",\r\n    \"avgStepsPD\": \"7000-9999\",\r\n    \"eatingHabits\": \"Below Average\",\r\n    \"avgHrsSleepPD\": \"4-5\",\r\n    \"avgUnitsAlcoholPW\": \"18+\",\r\n    \"occupation\": \"Labourer\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/update-user-info",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"update-user-info"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Setup 2fa",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/setup-2fa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"setup-2fa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Verify 2fa",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"code\": \"903391\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/verify-2fa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"verify-2fa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Disable 2FA",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/disable-2fa",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"disable-2fa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "post a post",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"user\": \"638634d02a9214748d14ca00\",\r\n    \"title\": \"Buy a standing desk!\"\r\n    \"body\": \"I recently bought a standing desk and it changed my life.... blah.. blah\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "like a post",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"postID\": \"638668fba077e5156a882bb9\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/like",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"like"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "auth user",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/auth",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"auth"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "profile page auth",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2ZhOTVhN2ViZDg5YTBkNjE4NmIyZSIsImlhdCI6MTY2OTY0MjM2NSwiZXhwIjoxNjY5NjQ1OTY1fQ.ibIh5h6ecnPIJKpnDdrPYnUV-hu0uq59TTkoLQKN_9Y",
-						"type": "default",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/profile/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"profile",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get user",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
-						"type": "default",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/user/get-user",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"user",
-						"get-user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "upload",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
-						"type": "default",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "image",
-							"type": "file",
-							"src": "/C:/Users/Haris/Downloads/PNG_transparency_demonstration_1.png"
-						},
-						{
-							"key": "title",
-							"value": "Photo 1",
-							"type": "default"
-						},
-						{
-							"key": "body",
-							"value": "Standing Desk is great!",
-							"type": "default"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/upload",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"upload"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get photo by id",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
-						"type": "default",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "testImage",
-							"type": "default",
-							"disabled": true
-						},
-						{
-							"key": "image",
-							"type": "file",
-							"src": "/C:/Users/Haris/Downloads/PNG_transparency_demonstration_1.png"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/uploads/63889d7447fe637b9f686c97.png",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"uploads",
-						"63889d7447fe637b9f686c97.png"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get all posts",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"harison@gmail.com\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:3000/api/posts/get-all",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"posts",
-						"get-all"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+  "info": {
+    "_postman_id": "96f26287-172b-4142-8f87-644ec87d0f9a",
+    "name": "Node IA CW",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"bob2@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"fname\": \"bob\",\r\n    \"newsletter\": \"true\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register User Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"harison@gmail.com\",\r\n    \"password\": \"harison123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "register"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"dave@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"twoFACode\": \"903391\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"bob@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Change Password",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"oldPassword\": \"123456789\",\r\n    \"newPassword\": \"12345678\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/change-password",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "change-password"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/delete-account",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "delete-account"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"fname\": \"Bob1\",\r\n    \"email\": \"bob@gmail.com\",\r\n    \"newsletter\": \"false\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/update-user",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "update-user"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update User Info",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTcyOTE3NywiZXhwIjoxNjY5NzMyNzc3fQ.7tB00NyM1202ZEQXb-r-sYmqM0o1K_1SHCKOvX5lnQQ\",\r\n    \"sex\": \"Male\",\r\n    \"age\": \"40\",\r\n    \"height\": \"180\",\r\n    \"weight\": \"90\",\r\n    \"avgHrsExercisePW\": \"None\",\r\n    \"avgStepsPD\": \"7000-9999\",\r\n    \"eatingHabits\": \"Below Average\",\r\n    \"avgHrsSleepPD\": \"4-5\",\r\n    \"avgUnitsAlcoholPW\": \"18+\",\r\n    \"occupation\": \"Labourer\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/update-user-info",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "update-user-info"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Setup 2fa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/setup-2fa",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "setup-2fa"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verify 2fa",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"code\": \"903391\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/verify-2fa",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "verify-2fa"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Disable 2FA",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/disable-2fa",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "disable-2fa"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "post a post",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"user\": \"638634d02a9214748d14ca00\",\r\n    \"title\": \"Buy a standing desk!\"\r\n    \"body\": \"I recently bought a standing desk and it changed my life.... blah.. blah\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/posts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "posts"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "like a post",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"postID\": \"638668fba077e5156a882bb9\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/posts/like",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "posts", "like"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "auth user",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/auth",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "auth"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "profile page auth",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzN2ZhOTVhN2ViZDg5YTBkNjE4NmIyZSIsImlhdCI6MTY2OTY0MjM2NSwiZXhwIjoxNjY5NjQ1OTY1fQ.ibIh5h6ecnPIJKpnDdrPYnUV-hu0uq59TTkoLQKN_9Y",
+            "type": "default",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "profile/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["profile", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
+            "type": "default",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/user/get-user",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "user", "get-user"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "upload",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
+            "type": "default",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/C:/Users/Haris/Downloads/PNG_transparency_demonstration_1.png"
+            },
+            {
+              "key": "title",
+              "value": "Photo 1",
+              "type": "default"
+            },
+            {
+              "key": "body",
+              "value": "Standing Desk is great!",
+              "type": "default"
+            }
+          ],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/posts/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "posts", "upload"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get photo by id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
+            "type": "default",
+            "disabled": true
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "name",
+              "value": "testImage",
+              "type": "default",
+              "disabled": true
+            },
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/C:/Users/Haris/Downloads/PNG_transparency_demonstration_1.png"
+            }
+          ],
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/posts/uploads/63889d7447fe637b9f686c97.png",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "posts", "uploads", "63889d7447fe637b9f686c97.png"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get all posts",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0",
+            "type": "default"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"harison@gmail.com\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzODRlMmJlYjIxMTBhNzVkOTYxOGNmOCIsImlhdCI6MTY2OTY1NDY0MywiZXhwIjoxNjY5NjU4MjQzfQ.4SH5qoNQ2dJEFfil0EUyn4U-P9eXHlgfsQhmBACHGj0\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "api/posts/get-all",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "posts", "get-all"]
+        }
+      },
+      "response": []
+    }
+  ]
 }
