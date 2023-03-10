@@ -35,7 +35,7 @@ app.use("/", express.static(path.join(__dirname, "static")));
 //app.listen(3000, () => console.log("server listening on port " + port));
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(PORT, () => console.log("server listening on port " + port));
+  app.listen(PORT, () => console.log("server listening on port " + PORT));
 }
 
 // export app and db for testing
