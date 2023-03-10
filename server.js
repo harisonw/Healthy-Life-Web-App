@@ -13,10 +13,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 const AuthRoute = require("./routes/auth");
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 var db = "mongodb://127.0.0.1:27017/HealthyLife";
 
-mongoose.connect(db);
+mongoose.connect(db).catch((err) => console.log(err));
 
 app.use("/api/user", AuthRoute);
 
@@ -34,9 +34,9 @@ app.use("/", express.static(path.join(__dirname, "static")));
 
 //app.listen(3000, () => console.log("server listening on port " + port));
 
-if (process.env.NODE_ENV !== 'test') {
-    app.listen(3000, () => console.log("server listening on port " + port));
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => console.log("server listening on port " + port));
 }
 
 // export app and db for testing
-module.exports = { app, db}
+module.exports = { app, db };
